@@ -14,7 +14,6 @@ const ChooseMode = ({userName}) => {
     <>
     <div className="text-left">
        <h1 className="text-red-500 font-bold text-3xl">LearnNow</h1> 
-       <h1>{subjName}</h1>
        
        <span> <img/> </span>
        <ul>
