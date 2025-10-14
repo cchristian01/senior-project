@@ -1,5 +1,5 @@
 import {React, useState} from 'react'
-
+ 
 const InfoCard = ({Subject, num, setNum}) => {
   const [questions, setquestions] = useState(false);
   const changeBool = () => {setquestions(true); setNum(0)}
@@ -7,7 +7,7 @@ const InfoCard = ({Subject, num, setNum}) => {
   const [level, increaseLevel] = useState(1);
   const part = "level" + level;
     const nextInfo = () => {
-       setNum(prev => { if(prev < Subject.level1.info.length - 1){return prev + 1} return prev})
+       setNum(prev => { if(prev < Subject[`${part}`].info.length - 1){return prev + 1} return prev})
     };
 
     const prevInfo = () => {
@@ -16,7 +16,8 @@ const InfoCard = ({Subject, num, setNum}) => {
     
     const nextQuestion = () => {
       setNum(prev => { if(prev < 9){return prev + 1} return prev})
-      }
+      setAnswer('');
+    }
 
       const prevQuestion = () => {
         setNum(prev => { if(prev > 0) { return prev - 1} return 0 })
@@ -26,8 +27,7 @@ const InfoCard = ({Subject, num, setNum}) => {
     const handleSubmit = (e) =>{
       alert('Answer Submitted!')
       e.preventDefault();
-      setAnswers((prevAnswers) => [...prevAnswers, answer]);
-      setAnswer('');
+      setAnswers((prevAnswers) => [...prevAnswers, (answer)]);
     }
     const countMatches = (list1, list2) => {
       let count = 0;
@@ -66,7 +66,7 @@ const InfoCard = ({Subject, num, setNum}) => {
     };
 
     const nextLesson = () => {
-      increaseLevel(prev => {return prev + 1});
+      increaseLevel(prev => {if(prev < 4){return prev + 1} return prev});
       setResults(false);
       setNum(0);
       setAnswers([]);
@@ -86,7 +86,7 @@ const InfoCard = ({Subject, num, setNum}) => {
         {questions?
         
         <form onSubmit={handleSubmit} className='h-8'>
-          <input type="number" min="0" value={answer} onChange={(e) => setAnswer(e.target.value)} className='h-8 text-center border-3 mt-4'/><br/>
+          <input type="text" min="0" value={answer} onChange={(e) => setAnswer(e.target.value)} className='h-8 text-center border-3 mt-4'/><br/>
           <button type="submit" className='h-5 text-center text-blue  cursor-pointer'>Submit </button >
         </form>
         : <span></span>}

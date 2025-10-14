@@ -10,7 +10,27 @@ const ChooseMode = ({userName}) => {
     const mode2 = "Non Game Mode";
 
     const { subjName }= useParams();
-  return (
+
+    let data;
+    const currentPath = learningPaths.paths[0];
+
+    const input = {
+        subj: subjName,
+        path: currentPath,
+        user: userName,
+    };
+    const getProgress = async() => {
+    const res = await fetch('http://localhost:5000/api/query-chain', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input)
+    });
+
+    data = await res.json();
+    console.log(data)
+}
+    getProgress();
+    return (
     <>
     <div className="text-left">
        <h1 className="text-red-500 font-bold text-3xl">LearnNow</h1> 
@@ -47,7 +67,7 @@ const ChooseMode = ({userName}) => {
    </div>
 
     <ProgressBar barName={learningPaths.paths[0]} />
-    <ProgressBar barName={learningPaths[learningPaths.paths[0]][0]} />
+    <ProgressBar barName={subjName} />
 
    </div>
    

@@ -1,6 +1,7 @@
 const express = require('express');
 
 const mysql = require('mysql2');
+const mysql2 = require('mysql2/promise')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
@@ -19,7 +20,17 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'sqlpwd224/YC',
-    database: 'ln_user_db'
+    database: 'ln_remote_db',
+ 
+});
+
+const pool = mysql2.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'sqlpwd224/YC',
+    database: 'ln_remote_db',
+    waitForConnections: true,
+    connectionLimit: 10
 });
 
 
@@ -115,6 +126,54 @@ app.post('/api/signup', (req, res) => {
 
 
 
+});
+
+
+app.post('/api/query-chain', async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { subj, path, user } = req.body; // data sent from React
+
+    // 🔹 1st Query
+    const [rows1] = await connection.execute(
+      'SELECT * FROM ln_subjects WHERE subject_name = ?',
+      [subj]
+    );
+    const subjId = rows1[0]?.id;
+    if (!subjId) return res.status(404).json({ error: 'Subject not found' });
+
+    // 🔹 2nd Query
+    const [rows2] = await connection.execute(
+      'SELECT * FROM ln_paths WHERE path_name = ?',
+      [path]
+    );
+    const pathId = rows2[0]?.id;
+
+    // 🔹 3rd Query
+    const [rows3] = await connection.execute(
+      'SELECT * FROM ln_users WHERE ln_username = ?',
+      [user]
+    );
+    const userId = rows3[0]?.id;
+
+    // 🔹 4th Query using all previous data
+    const [finalResult] = await connection.execute(
+      'SELECT * FROM ln_progress WHERE progress_user_id = ? AND progress_path_id = ? AND progress_subject_id = ? ',
+      [userId, pathId, subjId]
+    );
+
+    res.json({
+      subjId,
+      pathId,
+      userId,
+      result: finalResult
+    });
+  } catch (err) {
+    console.error('Error:', err.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    connection.release(); // release back to pool
+  }
 });
 
 
