@@ -6,7 +6,7 @@ import ProgressBar from '../Components/ProgressBar.jsx'
 import Footer from '../Components/Footer.jsx'
 
 const ChooseSubject = ({userName}) => {
-
+  const username = localStorage.getItem('usersname')
   return (
     <>
 
@@ -33,7 +33,7 @@ const ChooseSubject = ({userName}) => {
 
     <div className='h-20 text-left'>
          
-        <div className="mb-5"><h1 className="text-4xl">Welcome, {userName}</h1></div>
+        <div className="mb-5"><h1 className="text-4xl">Welcome, {username}</h1></div>
         
         <hr/>
     </div>

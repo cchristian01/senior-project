@@ -32,10 +32,8 @@ function App() {
       <Route path="/choose" element= {<ChooseLp userName={username}/>}/>
       <Route path="/chooseSubj" element={<ChooseSubject userName={username} />} />
 
-      <Route path="/chooseMode" element={<ChooseMode userName={username} />} /> 
       <Route path="/chooseMode/:subjName" element={<ChooseMode userName={username} />} /> 
 
-      <Route path="/course" element={<CoursePage />} subject={subject}/>
       <Route path="/course/:subjName" element={<CoursePage />} subject={subject}/>
     </Routes>
 

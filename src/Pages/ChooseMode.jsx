@@ -10,14 +10,14 @@ const ChooseMode = ({userName}) => {
     const mode2 = "Non Game Mode";
 
     const { subjName }= useParams();
-
+    const username = localStorage.getItem('usersname');
     let data;
     const currentPath = learningPaths.paths[0];
 
     const input = {
         subj: subjName,
         path: currentPath,
-        user: userName,
+        user: username,
     };
     const getProgress = async() => {
     const res = await fetch('http://localhost:5000/api/query-chain', {
@@ -28,8 +28,13 @@ const ChooseMode = ({userName}) => {
 
     data = await res.json();
     console.log(data)
+    localStorage.setItem('courseData', JSON.stringify(data));
+
 }
+
+
     getProgress();
+
     return (
     <>
     <div className="text-left">
@@ -54,7 +59,7 @@ const ChooseMode = ({userName}) => {
 
    <div className='h-20 text-left'>
         
-       <div className="mb-5"><h1 className="text-4xl">Welcome, {userName}</h1></div>
+       <div className="mb-5"><h1 className="text-4xl">Welcome, {username}</h1></div>
        
        <hr/>
    </div>
@@ -75,7 +80,7 @@ const ChooseMode = ({userName}) => {
    <div className=' flex justify-center gap-10 md:gap-30 w-100 md:w-full h-200'>
        
         <SubjectCard name={mode1} link={"/chooseMode"} /> 
-        <Link key={subjName} to={`/course/${subjName}`}>
+        <Link key={subjName} to={`/course/${subjName}`} >
         <SubjectCard name={mode2} link={"/course"} />
         </Link>
 

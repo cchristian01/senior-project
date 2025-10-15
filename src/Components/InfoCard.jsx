@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
  
-const InfoCard = ({Subject, num, setNum}) => {
+const InfoCard = ({Subject, data, num, setNum}) => {
   const [questions, setquestions] = useState(false);
   const changeBool = () => {setquestions(true); setNum(0)}
   const [results, setResults] = useState(false);

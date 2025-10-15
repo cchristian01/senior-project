@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import InfoCard from '../Components/InfoCard.jsx'
 import Footer from '../Components/Footer.jsx'
@@ -11,6 +11,16 @@ export const CoursePage = ({subject}) => {
     const [component, setComponent] = useState(null);
     let level = 1;
     const course = subjName;
+    let data;
+    useEffect(() => {
+        const stored = localStorage.getItem('courseData');
+        if(stored) {
+            data = JSON.parse(stored);
+            console.log(`This is data ${data.subjId}`);
+
+        }
+    }, [])
+
     const subjects = { "Addition": {
 
         level1: {
@@ -236,7 +246,7 @@ export const CoursePage = ({subject}) => {
 
     <div className='h-150 flex justify-center bg-gray-700'>
 
-    <InfoCard Subject={subjects[subjName]} num={num} setNum={setNum}/> 
+    <InfoCard Subject={subjects[subjName]} data={data} num={num} setNum={setNum}/> 
   
         
         
