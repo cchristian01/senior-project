@@ -246,7 +246,7 @@ export const CoursePage = ({subject}) => {
 
     <div className='h-150 flex justify-center bg-gray-700'>
 
-    <InfoCard Subject={subjects[subjName]} data={data} num={num} setNum={setNum}/> 
+    <InfoCard Subject={subjects[subjName]} num={num} setNum={setNum}/> 
   
         
         

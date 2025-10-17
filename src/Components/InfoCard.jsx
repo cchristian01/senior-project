@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
  
-const InfoCard = ({Subject, data, num, setNum}) => {
+const InfoCard = ({Subject, num, setNum}) => {
   const [questions, setquestions] = useState(false);
   const changeBool = () => {setquestions(true); setNum(0)}
   const [results, setResults] = useState(false);
@@ -41,6 +41,60 @@ const InfoCard = ({Subject, data, num, setNum}) => {
       return count;
     }
     const correctNum = countMatches(Subject[`${part}`].answers, answers);
+    let total = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0
+    };
+    if(level > 1 ) {
+      total = JSON.parse(localStorage.getItem('totalObj'));
+    }
+    let totalsSum;
+    const calculateSum = () => {
+    const sum = Object.values(total).reduce((accumulator, currentVal) => {
+        return accumulator + currentVal;
+    }, 0);
+
+    return sum;
+  }
+
+  totalsSum = calculateSum();
+
+
+    
+    const handleSave = async () => {
+      if(correctNum > total[level]){
+        total[level] = correctNum;
+        console.log("current correctNum: ", correctNum);
+        const newTotal = calculateSum();
+
+       const data =  JSON.parse(localStorage.getItem('courseData'));
+       console.log(data)
+        if( data.result.length == 0 || newTotal > data.result[0]?.points_earned){
+          console.log("yes")
+          console.log(data.result);
+          const updateBool = (newTotal > data.result[0]?.points_earned);
+           const res = await fetch('http://localhost:5000/api/update-score', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+            subj: parseInt(data.subjId),
+            path: parseInt(data.pathId),
+            user: parseInt(data.userId),
+            newScore: parseInt(newTotal),
+            update: parseInt(updateBool),
+
+          })
+        })
+        if(res.ok){
+          console.log("good")
+        }
+        }
+      }
+
+
+    }
     function getResponse (score) 
       {
         let retVal = "";
@@ -56,7 +110,20 @@ const InfoCard = ({Subject, data, num, setNum}) => {
     
     const showResults = () => {
       setResults(true);
+      //if(correctNum > JSON.parse(localStorage.getItem('totalObj')[level])){
+      total[level] = correctNum;
+      //}
+      localStorage.setItem('totalPoints', totalsSum);
+      localStorage.setItem('totalObj', JSON.stringify(total));
       
+      const savedTotalObj = JSON.parse(localStorage.getItem('totalObj'));
+      console.log('current total:', savedTotalObj[level]);
+      if(level > 1) {
+        console.log('level below total:',savedTotalObj[level - 1]);
+
+      }
+      console.log(savedTotalObj);
+      console.log('total correct: ', calculateSum())
       
     }
     const tryAgain = () => {
@@ -66,7 +133,7 @@ const InfoCard = ({Subject, data, num, setNum}) => {
     };
 
     const nextLesson = () => {
-      increaseLevel(prev => {if(prev < 4){return prev + 1} return prev});
+      increaseLevel(prev => {if(prev < 4){ return prev + 1} return prev});
       setResults(false);
       setNum(0);
       setAnswers([]);
@@ -92,7 +159,8 @@ const InfoCard = ({Subject, data, num, setNum}) => {
         : <span></span>}
         </p>
         <button className='cursor-pointer p-8 m-2 mt-15 pfont-bold' onClick={questions?prevQuestion: prevInfo}>Back</button>
-       
+        <button onClick={handleSave}>Save</button>
+
         <button className='cursor-pointer p-8 m-2 mt-15 font-bold' onClick={questions?nextQuestion: nextInfo}>Next</button>
         {!questions? <button className='cursor-pointer p-8 m-2 mt-15 text-green-600 font-bold' onClick={changeBool} >Continue to Questions</button> : <span></span>}
         {questions && num == 9 ? <button className='cursor-pointer p-8 m-2 mt-15 text-blue-600 font-bold' onClick={showResults}>See Results</button>: <span></span>}

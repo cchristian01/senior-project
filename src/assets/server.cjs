@@ -177,6 +177,64 @@ app.post('/api/query-chain', async (req, res) => {
 });
 
 
+app.post('/api/update-score', async (req, res) => {
+    const {subj, path, user, newScore, update} = req.body;
+    const connection = await pool.getConnection();
+    try {
+
+        const [rows1] = await connection.execute(
+            'SELECT * FROM ln_subjects WHERE id = ?',
+            [subj]
+        );
+        const subjPoints = rows1[0]?.subject_total_points;
+
+        const [rows2] = await connection.execute(
+            'SELECT * FROM ln_paths WHERE id = ?',
+            [path]
+        );
+        const pathPoints = rows2[0]?.path_total_points;
+        const subjPercentage = parseFloat(newScore/subjPoints);
+
+        const [rows3] = await connection.execute(
+            'SELECT SUM(points_earned) AS current_points FROM ln_progress WHERE progress_user_id = ? AND progress_path_id = ?',
+            [user, path]
+        );
+        const points_sum = rows3[0]?.current_points;
+        const pathPercentage = parseFloat(newScore/pathPoints);
+    if(update) {
+    const [insert] = await connection.execute(
+        'INSERT INTO ln_progress VALUES(?,?,?,?,?,?)',
+        [user, path, subj, newScore, subjPercentage, pathPercentage ]
+    
+    );
+}
+else {
+    const [updatePointsVal] = await connection.execute(
+        'UPDATE ln_progress SET points_earned = ? WHERE progress_user_id = ? AND progress_path_id = ? AND progress_subject_id = ?',
+        [newScore, user, path, subj]
+    );
+
+    const [updateSubjVal] = await connection.execute(
+        'UPDATE ln_progress SET subject_value = ? WHERE progress_user_id = ? AND progress_path_id = ? AND progress_subject_id = ?',
+        [subjPercentage, user, path, subj]
+    );
+    const [updatePathVal] = await connection.execute(
+        'UPDATE ln_progress SET path_value = ? WHERE progress_user_id = ? AND progress_path_id = ? AND progress_subject_id = ?',
+        [pathPercentage, user, path, subj]
+    );
+}
+
+    }
+    catch (err) {
+        console.error('Error:', err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    connection.release(); 
+  }
+
+});
+
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 })
