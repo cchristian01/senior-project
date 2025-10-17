@@ -195,11 +195,7 @@ app.post('/api/update-score', async (req, res) => {
         const pathPoints = rows2[0]?.path_total_points;
         const subjPercentage = parseFloat(newScore/subjPoints);
 
-        const [rows3] = await connection.execute(
-            'SELECT SUM(points_earned) AS current_points FROM ln_progress WHERE progress_user_id = ? AND progress_path_id = ?',
-            [user, path]
-        );
-        const points_sum = rows3[0]?.current_points;
+
         const pathPercentage = parseFloat(newScore/pathPoints);
     if(update) {
     const [insert] = await connection.execute(

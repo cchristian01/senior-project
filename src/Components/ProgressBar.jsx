@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProgressBar = ({barName}) => {
+const ProgressBar = ({barName, progress}) => {
   return (
     <div className='h-20 w-100 -mt-15 mb-15'>
     <h1 className='m-3 font-bold'>{barName} Progress Bar</h1>
@@ -9,7 +9,7 @@ const ProgressBar = ({barName}) => {
         <div className=' h-full w-2 h-5 bg-black'></div>
 
     </div>
-    <span className='text-md -mt-1'>0%</span>
+    <span className='text-md -mt-1'>{progress * 100}%</span>
     </div>
     
 

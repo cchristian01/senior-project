@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState, useEffect} from 'react'
 import { Link, useParams} from 'react-router-dom'
 import learningPaths from '../assets/learningPaths.jsx'
 import SubjectCard from '../Components/SubjectCard.jsx'
@@ -12,6 +13,8 @@ const ChooseMode = ({userName}) => {
     const { subjName }= useParams();
     const username = localStorage.getItem('usersname');
     let data;
+    const [subjPercentage, setSubjPercentage] = useState(0);
+    const [pathPercentage, setPathPercentage] = useState(0);
     const currentPath = learningPaths.paths[0];
 
     const input = {
@@ -19,6 +22,7 @@ const ChooseMode = ({userName}) => {
         path: currentPath,
         user: username,
     };
+    useEffect (() => {
     const getProgress = async() => {
     const res = await fetch('http://localhost:5000/api/query-chain', {
       method: 'POST',
@@ -29,12 +33,17 @@ const ChooseMode = ({userName}) => {
     data = await res.json();
     console.log(data)
     localStorage.setItem('courseData', JSON.stringify(data));
+    if(!data.result.length == 0)
+     {
+        setSubjPercentage(data.result[0].subject_value);
+        setPathPercentage(data.result[0].path_value);
+    }
 
 }
 
 
     getProgress();
-
+},[]);
     return (
     <>
     <div className="text-left">
@@ -71,8 +80,8 @@ const ChooseMode = ({userName}) => {
        </div>
    </div>
 
-    <ProgressBar barName={learningPaths.paths[0]} />
-    <ProgressBar barName={subjName} />
+    <ProgressBar barName={learningPaths.paths[0]} progress={pathPercentage} />
+    <ProgressBar barName={subjName} progress={subjPercentage} />
 
    </div>
    
