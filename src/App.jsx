@@ -10,6 +10,7 @@ import ChooseMode from './Pages/ChooseMode.jsx'
 import CoursePage from './Pages/CoursePage.jsx'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css'
+import ChatPage from './Pages/ChatPage.jsx'
 
 
 
@@ -35,6 +36,7 @@ function App() {
       <Route path="/chooseMode/:subjName" element={<ChooseMode userName={username} />} /> 
 
       <Route path="/course/:subjName" element={<CoursePage />} subject={subject}/>
+      <Route path="/chat" element={<ChatPage />} />
     </Routes>
 
   </BrowserRouter> 

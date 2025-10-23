@@ -53,10 +53,10 @@ const ChooseMode = ({userName}) => {
        <ul>
        <span className='grid grid-cols-4 text-right mr-10'> 
            
-               <li>Link 1</li>
-               <li>Link 2</li>
-               <li>Link 3</li>
-               <li>Link 4</li>
+               <li>Leaderboard</li>
+               <li>View Score</li>
+               <Link to="/chat"><button className='cursor-pointer'><li>Chat</li></button></Link>
+               <li>Settings</li>
            
        </span>
        </ul>

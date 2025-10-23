@@ -14,6 +14,91 @@ const port = 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json())
+
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/chat_app', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const mongoDB = mongoose.connection;
+mongoDB.once('open', () => console.log('MongoDB connected for chat'));
+
+const { Schema, model } = mongoose;
+const messageSchema = new Schema({
+    senderName: String,
+    receiverName: String,
+    content: String,
+    timestamp: {type: Date, default: Date.now},
+    delivered: {type: Boolean, default: false},
+
+});
+
+const Message = model('Message', messageSchema);
+
+const http = require('http');
+const { Server } = require('socket.io');
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET','POST']
+    }
+});
+
+const onlineUsers = new Map();
+
+io.on('connection', (socket) => {
+    console.log('Socket connected:', socket.id);
+
+    const socketToUser = new Map();
+
+    socket.on('user_connected', async (username) => {
+        if(!username || typeof username !== 'string') return;
+
+        onlineUsers.set(username, socket.id);
+        socketToUser.set(socket.id, username);
+        console.log(`User '${username}' is online`);
+
+
+        const undelivered = await Message.find({receiverUsername: username, delivered: false});
+        for(const msg of undelivered) {
+            socket.emit('receive_message', msg);
+            msg.delivered = true;
+            await msg.save();
+        }
+    });
+
+    socket.on('send_message', async({senderUsername, receiverUsername, content}) => {
+        if(!senderUsername || !receiverUsername || !content) return;
+
+        const message = await Message.create({senderUsername, receiverUsername, content});
+        const receiverSocket = onlineUsers.get(receiverUsername);
+        if(receiverSocket) {
+            io.to(receiverSocket).emit('receive_message', message);
+            message.delivered = true;
+            await message.save();
+
+            
+        }
+    });
+
+    socket.on('disconnect', () => {
+        const username = socketToUser.get(socket.id);
+        if(username){
+            onlineUsers.delete(username);
+            socketToUser.delete(socket.id);
+            console.log(`User '${username}' disconnected`);
+        } 
+        else {
+            console.log(`Socket disconnected: ${socket.id}`);
+        }
+    });
+});
+
+
 
 
 const db = mysql.createConnection({
@@ -231,6 +316,29 @@ else {
 });
 
 
-app.listen(port, () => {
+app.post('/api/chat-search', async(req, res) => {
+        const {search_val} = req.body; 
+    const connection = await pool.getConnection();
+    try {
+        [rows1] = await connection.execute(
+            'SELECT ln_username FROM ln_users WHERE ln_username LIKE ? ',
+            [`%${search_val}%`]
+        );
+
+
+        res.json(rows1
+        );
+    }
+    catch(err) {
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Server Error'});
+    }finally {
+        connection.release();
+    }
+
+});
+
+
+server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
-})
+});
