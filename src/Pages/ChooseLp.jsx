@@ -2,25 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import learningPaths from '../assets/learningPaths.jsx'
 import SubjectCard from '../Components/SubjectCard.jsx'
+import TopMenu from '../Components/TopMenu.jsx'
 import Footer from '../Components/Footer.jsx'
 
 const ChooseLp = ({userName}) => {
-    const username = localStorage.getItem('usersname')
+    const username = localStorage.getItem('usersname');
+    const updateUserScore = async() => {
+        const res = await fetch('http://localhost:5000/api/new-user-score', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: username})
+        });
+    };
+
+    updateUserScore();
   return (
     <>
     <div className="text-left">
         <h1 className="text-red-500 font-bold text-3xl">LearnNow</h1> 
         <span> <img/> </span>
-        <ul>
-        <span className='grid grid-cols-4 text-right mr-10'> 
-            
-                <li>Leaderboard</li>
-                <li>View Score</li>
-                <li>Chat</li>
-                <li>Settings</li>
-            
-        </span>
-        </ul>
+        <TopMenu />
         <div className="text-right"><Link to="/" ><button className="cursor-pointer bg-black hover:bg-gray-700 mr-2 mt-5 md:mt-10 md:mr-5 text-white font-bold rounded-lg shadow-lg p-1 md:p-3 w-20 md:w-35">Logout</button></Link></div>
     </div>
 

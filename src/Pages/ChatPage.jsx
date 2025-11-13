@@ -1,13 +1,53 @@
 import {React, useState, useEffect} from 'react'
 import Footer from '../Components/Footer.jsx'
 import DisplayBox from '../Components/DisplayBox.jsx'
+import io from 'socket.io-client'
+
+const socket = io("http://localhost:5000");
 const ChatPage = () => {
-    
+    const username = localStorage.getItem('usersname');
     const [search, setSearch] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const handleInputChange = (e) => {setSearch(e.target.value);};
     const [results, setResults] = useState([]);
     const [chatWithUser, setChatWithUser] = useState('');
+
+
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+    useEffect(() => {
+
+        socket.emit("user_connected", username);
+
+        socket.on("receive_message", (msg) => {
+            setMessages((prev) => [...prev, msg])
+        });
+
+        return () => {
+            socket.off("receive_message");
+            socket.disconnect();
+        };
+
+    }, [username]);
+
+    const sendMessage = () => {
+        if(!chatWithUser || !message.trim()) return;
+
+        const msg = {
+            senderUsername: username,
+            receiverUsername: chatWithUser,
+            content: message,
+        };
+
+        socket.emit("send_message", msg);
+
+        setMessages((prev) => [...prev, {...msg, self:true}]);
+        setMessage('');
+    }
+
+    console.log(messages);
+
+
     useEffect(() => {
 
         if(!searchTerm) return;
@@ -74,7 +114,30 @@ const ChatPage = () => {
                 <li></li>
             </ul>
         </div>
-            <DisplayBox />
+
+
+
+  <div className='bg-gray-100 rounded-xl text-left h-70 md:h-115 w-90  md:w-110 p-3 md:p-8  shadow-xl z-3'>
+      <h1 className='bg-black-600 text-center font-bold text-lg'>Current Chat</h1>
+      <h2 className='bg-black-600 text-left font-bold text-lg'>Recipient: </h2> <span> <h2 className='font-bold text-gray-500'>{chatWithUser} </h2></span> 
+      <div className='bg-gray-50 relative rounded-xl overflow-scroll w-[0.8] h-[80%] mb-6 m-2 md:m-4'>
+        {messages.length === 0 && <p>No messages yet.</p>}
+        {messages.map((msg, idx) => (
+            <div 
+                key={idx}
+                style={{textAlign: msg.senderUsername === username || msg.self ? "right" : "left",}}>
+                    <p><strong>{msg.senderUsername}: </strong> {msg.content}</p>
+            </div>
+        ))}
+          <div className='absolute pt-[80%] pl-[10%] w-full h-[20%] '>
+            <input type="text" onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> e.key==="Enter" && sendMessage()}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage()}>Send</button></span>
+
+
+          </div>
+      </div>
+    </div>
+
+
 
     </div>
     <div className='h-50'>

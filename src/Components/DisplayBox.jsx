@@ -8,7 +8,7 @@ const DisplayBox = () => {
       <h2 className='bg-black-600 text-left font-bold text-lg'>Recipient: </h2>
       <div className='bg-gray-50 rounded-xl w-[0.8] h-[85%] mb-6 m-2 md:m-4'>
           <div className='pt-[80%] pl-[10%] w-full h-[20%] '>
-            <input type="text" placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'>Send</button></span>
+            <input type="text" onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> e.key==="Enter" && sendMessage()}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage()}>Send</button></span>
 
 
           </div>

@@ -4,6 +4,7 @@ import { Link, useParams} from 'react-router-dom'
 import learningPaths from '../assets/learningPaths.jsx'
 import SubjectCard from '../Components/SubjectCard.jsx'
 import ProgressBar from '../Components/ProgressBar.jsx'
+import TopMenu from '../Components/TopMenu.jsx'
 import Footer from '../Components/Footer.jsx'
 
 const ChooseMode = ({userName}) => {
@@ -50,16 +51,7 @@ const ChooseMode = ({userName}) => {
        <h1 className="text-red-500 font-bold text-3xl">LearnNow</h1> 
        
        <span> <img/> </span>
-       <ul>
-       <span className='grid grid-cols-4 text-right mr-10'> 
-           
-               <li>Leaderboard</li>
-               <li>View Score</li>
-               <Link to="/chat"><button className='cursor-pointer'><li>Chat</li></button></Link>
-               <li>Settings</li>
-           
-       </span>
-       </ul>
+        <TopMenu />
        
        
        <div className="text-right"><Link to="/"><button className="cursor-pointer bg-black hover:bg-gray-700 mr-2 mt-5 md:mt-10 md:mr-5 text-white font-bold rounded-lg shadow-lg p-1 md:p-3 w-20 md:w-35">Logout</button></Link></div>

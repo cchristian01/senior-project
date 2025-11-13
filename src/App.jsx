@@ -11,6 +11,8 @@ import CoursePage from './Pages/CoursePage.jsx'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css'
 import ChatPage from './Pages/ChatPage.jsx'
+import Leaderboard from './Pages/Leaderboard.jsx'
+import ViewScore from './Pages/ViewScore.jsx'
 
 
 
@@ -37,6 +39,8 @@ function App() {
 
       <Route path="/course/:subjName" element={<CoursePage />} subject={subject}/>
       <Route path="/chat" element={<ChatPage />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="view-score" element={<ViewScore />} />
     </Routes>
 
   </BrowserRouter> 

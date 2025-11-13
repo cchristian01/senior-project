@@ -115,7 +115,7 @@ const pool = mysql2.createPool({
     password: 'sqlpwd224/YC',
     database: 'ln_remote_db',
     waitForConnections: true,
-    connectionLimit: 10
+    connectionLimit: 15
 });
 
 
@@ -336,6 +336,56 @@ app.post('/api/chat-search', async(req, res) => {
         connection.release();
     }
 
+});
+
+
+app.get('/api/get-leaders', async (req, res) => {
+    const connection = await pool.getConnection();
+    try{
+
+        const [rows] = await connection.execute(
+            'SELECT ln_username, ln_score FROM ln_users ORDER BY ln_score DESC LIMIT 5'
+        );
+        res.json(rows);
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Sever Error'});
+    }finally{
+        connection.release();
+    }
+});
+
+app.post('/api/new-user-score', async (req, res) => {
+    const {name} = req.body;
+    const connection = await pool.getConnection();
+    try{
+
+        [rows1] = await connection.execute(
+            'SELECT id FROM ln_users WHERE ln_username = ?',
+            [name]
+        );
+        const id = rows1[0]?.id;
+
+        [rows2] = await connection.execute(
+            'SELECT SUM(points_earned) AS "score" FROM ln_progress WHERE progress_user_id = ?',
+            [id]
+        );
+
+        const score = rows2[0]?.score;
+
+        [rows3] = await connection.execute(
+            'UPDATE ln_users SET ln_score = ? WHERE ln_username = ?',
+            [score, name]
+        );
+        res.json(score);
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Sever Error'});
+    }finally{
+        connection.release();
+    }
 });
 
 
