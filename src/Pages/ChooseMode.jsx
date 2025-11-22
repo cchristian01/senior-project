@@ -13,10 +13,11 @@ const ChooseMode = ({userName}) => {
 
     const { subjName }= useParams();
     const username = localStorage.getItem('usersname');
+    const pathProgress = localStorage.getItem('pathProgress');
     let data;
     const [subjPercentage, setSubjPercentage] = useState(0);
-    const [pathPercentage, setPathPercentage] = useState(0);
     const currentPath = learningPaths.paths[0];
+    
 
     const input = {
         subj: subjName,
@@ -37,7 +38,6 @@ const ChooseMode = ({userName}) => {
     if(!data.result.length == 0)
      {
         setSubjPercentage(data.result[0].subject_value);
-        setPathPercentage(data.result[0].path_value);
     }
 
 }
@@ -72,7 +72,7 @@ const ChooseMode = ({userName}) => {
        </div>
    </div>
 
-    <ProgressBar barName={learningPaths.paths[0]} progress={pathPercentage} />
+    <ProgressBar barName={learningPaths.paths[0]} progress={Number(pathProgress)} />
     <ProgressBar barName={subjName} progress={subjPercentage} />
 
    </div>

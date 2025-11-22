@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import learningPaths from '../assets/learningPaths.jsx'
 import SubjectCard from '../Components/SubjectCard.jsx'
@@ -7,7 +8,28 @@ import TopMenu from '../Components/TopMenu.jsx'
 import Footer from '../Components/Footer.jsx'
 
 const ChooseSubject = ({userName}) => {
-  const username = localStorage.getItem('usersname')
+  let data;
+  const username = localStorage.getItem('usersname');
+
+  const [pathPercentage, setPathPercentage] = useState(0);
+
+  useEffect(() => {
+
+  
+      const setPercentage = async() => {
+        const res = await fetch('http://localhost:5000/api/get-percentage', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({name: username, path: learningPaths.paths[0]})
+        });
+
+        data = await res.json();
+        console.log(data)
+        setPathPercentage(data[0].path_value);
+        localStorage.setItem('pathProgress', data[0].path_value);
+    };
+    setPercentage();
+    }, []);
   return (
     <>
 
@@ -39,7 +61,7 @@ const ChooseSubject = ({userName}) => {
         </div>
       </div>
         
-        <ProgressBar barName={learningPaths.paths[0]} />
+        <ProgressBar barName={learningPaths.paths[0]} progress={pathPercentage} />
     </div>
 
 

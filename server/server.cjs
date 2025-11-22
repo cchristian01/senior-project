@@ -1,4 +1,9 @@
+require('dotenv').config();
+
 const express = require('express');
+const path = require('path');
+require('dotenv').config({path: path.resolve(__dirname, './.env')});
+
 
 const mysql = require('mysql2');
 const mysql2 = require('mysql2/promise')
@@ -6,6 +11,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const {sendEmail} = require('./sendEmail.cjs')
+
 
 
 const app = express();
@@ -356,6 +363,59 @@ app.get('/api/get-leaders', async (req, res) => {
     }
 });
 
+app.post('/api/get-percentage', async(req, res) => {
+    const {name, path} = req.body;
+    const connection = await pool.getConnection();
+    try {
+    const [rows1] = await connection.execute(
+        'SELECT * FROM ln_users WHERE ln_username = ?',
+        [name]
+    );
+
+    const user_id = rows1[0]?.id;
+
+    const [rows2] = await connection.execute(
+        'SELECT * FROM ln_paths WHERE path_name = ?',
+        [path]
+    );
+
+    const path_id = rows2[0]?.id;
+
+    const [rows3] = await connection.execute(
+        'SELECT * FROM ln_progress WHERE progress_user_id = ? AND progress_path_id = ? LIMIT 1',
+        [user_id, path_id]
+    );
+        res.json(rows3);
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+    finally {
+        connection.release();
+    }
+});
+
+app.post('/api/get-score', async (req, res) => {
+    const {name} = req.body;
+    const connection = await pool.getConnection();
+    try{
+
+        const [rows] = await connection.execute(
+            'SELECT ln_score FROM ln_users WHERE ln_username = ?',
+            [name]
+        );
+
+        res.json(rows);
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Server Error'});
+    }finally{
+        connection.release();
+    }
+});
+
 app.post('/api/new-user-score', async (req, res) => {
     const {name} = req.body;
     const connection = await pool.getConnection();
@@ -388,6 +448,64 @@ app.post('/api/new-user-score', async (req, res) => {
     }
 });
 
+
+app.post("/forgot-password", async (req, res) => {
+     const {mail} = req.body;
+    const connection = await pool.getConnection();
+    try{
+
+        const [rows] = await connection.execute(
+            'SELECT * FROM ln_users WHERE ln_email = ?',
+            [mail]
+        );
+        const userEmail = rows[0]?.ln_email;
+        console.log(process.env.JWT_SECRET);
+        const user = rows[0];
+        if(!userEmail) return res.status(400).json("Email not found");
+        const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: "15m"});
+        const link =  `${process.env.FRONTEND_URL}/reset-password/${token}`;
+
+        await sendEmail(userEmail, "Reset Password", `<a href="${link}">{link}</a>`);
+        res.json("Reset email sent!");
+
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Server Error'});
+    }finally{
+        connection.release();
+    }
+});
+
+
+
+app.post("/reset-password/:token", async (req, res) => {
+     const {name, password} = req.body;
+    const connection = await pool.getConnection();
+    try{
+        const {id} = jwt.verify(req.params.token, process.env.JWT_SECRET);
+
+        const [rows] = await connection.execute(
+            'SELECT * FROM ln_users WHERE ln_username = ?',
+            [name]
+        );
+       const user = rows[0];
+        if (!user) return res.status(400).json("User not found");
+        const newPassword = await bcrypt.hash(password, 10);
+        const [rows1] = await connection.execute(
+            'UPDATE ln_users SET ln_pwd = ? WHERE ln_username = ?',
+            [newPassword, name]
+        );
+        res.json("Password Updated!");
+
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Server Error'});
+    }finally{
+        connection.release();
+    }
+});
 
 server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

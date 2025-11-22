@@ -13,6 +13,7 @@ import './App.css'
 import ChatPage from './Pages/ChatPage.jsx'
 import Leaderboard from './Pages/Leaderboard.jsx'
 import ViewScore from './Pages/ViewScore.jsx'
+import PasswordReset from './Pages/PasswordReset.jsx'
 
 
 
@@ -40,7 +41,8 @@ function App() {
       <Route path="/course/:subjName" element={<CoursePage />} subject={subject}/>
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
-      <Route path="view-score" element={<ViewScore />} />
+      <Route path="/view-score" element={<ViewScore />} />
+      <Route path="/password-reset" element={<PasswordReset />} />
     </Routes>
 
   </BrowserRouter> 

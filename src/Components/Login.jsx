@@ -1,4 +1,5 @@
 
+import {Link} from 'react-router-dom'
 const Login = ({onSubmit, username, setUsername, password, setPassword}) => {
     return(
       
@@ -13,7 +14,7 @@ const Login = ({onSubmit, username, setUsername, password, setPassword}) => {
       
         <input className="justify-center font-bold mt-2 md:py-4 cursor-pointer hover:bg-gray-500 py-2 px-12 w-45 rounded-xl text-white bg-black" type="submit" value="Login" /><br/>
       
-        <h1 className="md:mb-8 text-sm mt-3">Forgot Password? <a className="underline font-bold hover:text-gray-400" href="./">Reset Using Email</a></h1><br/>
+        <h1 className="md:mb-8 text-sm mt-3">Forgot Password? <a className="underline font-bold hover:text-gray-400" href="./"><Link to="/password-reset">Reset Using Email</Link></a></h1><br/>
       </div>
       </div>
       </form>
