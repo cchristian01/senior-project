@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from '../../public/vite.svg'
 import LoginPage from './Pages/Login-full.jsx'
 import SignupPage from './Pages/Signup-full.jsx'
 import HomePage from './Pages/HomePage.jsx'
@@ -14,6 +14,7 @@ import ChatPage from './Pages/ChatPage.jsx'
 import Leaderboard from './Pages/Leaderboard.jsx'
 import ViewScore from './Pages/ViewScore.jsx'
 import PasswordReset from './Pages/PasswordReset.jsx'
+import ResetPassword from './Pages/ResetPassword.jsx'
 
 
 
@@ -43,6 +44,7 @@ function App() {
       <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/view-score" element={<ViewScore />} />
       <Route path="/password-reset" element={<PasswordReset />} />
+      <Route path="/verify" element={<ResetPassword />} /> 
     </Routes>
 
   </BrowserRouter> 

@@ -459,11 +459,10 @@ app.post("/forgot-password", async (req, res) => {
             [mail]
         );
         const userEmail = rows[0]?.ln_email;
-        console.log(process.env.JWT_SECRET);
         const user = rows[0];
         if(!userEmail) return res.status(400).json("Email not found");
         const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: "15m"});
-        const link =  `${process.env.FRONTEND_URL}/reset-password/${token}`;
+        const link =  `${process.env.FRONTEND_URL}/verify?token=${token}`;
 
         await sendEmail(userEmail, "Reset Password", `<a href="${link}">{link}</a>`);
         res.json("Reset email sent!");
@@ -486,8 +485,8 @@ app.post("/reset-password/:token", async (req, res) => {
         const {id} = jwt.verify(req.params.token, process.env.JWT_SECRET);
 
         const [rows] = await connection.execute(
-            'SELECT * FROM ln_users WHERE ln_username = ?',
-            [name]
+            'SELECT * FROM ln_users WHERE id = ?',
+            [id]
         );
        const user = rows[0];
         if (!user) return res.status(400).json("User not found");
@@ -506,6 +505,16 @@ app.post("/reset-password/:token", async (req, res) => {
         connection.release();
     }
 });
+
+
+// Serve the Vite build folder
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// Catch-all: give React Router control
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
+
 
 server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
