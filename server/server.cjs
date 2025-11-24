@@ -478,12 +478,14 @@ app.post("/forgot-password", async (req, res) => {
 
 
 
-app.post("/reset-password/:token", async (req, res) => {
-     const {name, password} = req.body;
+app.post("/reset", async (req, res) => {
+     const {password} = req.body;
+     const token = req.query.token;
+     if(!token) return res.status(400).json({error: "Token not provided"})
     const connection = await pool.getConnection();
     try{
-        const {id} = jwt.verify(req.params.token, process.env.JWT_SECRET);
-
+        const {id} = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(id);
         const [rows] = await connection.execute(
             'SELECT * FROM ln_users WHERE id = ?',
             [id]
@@ -492,8 +494,8 @@ app.post("/reset-password/:token", async (req, res) => {
         if (!user) return res.status(400).json("User not found");
         const newPassword = await bcrypt.hash(password, 10);
         const [rows1] = await connection.execute(
-            'UPDATE ln_users SET ln_pwd = ? WHERE ln_username = ?',
-            [newPassword, name]
+            'UPDATE ln_users SET ln_pwd = ? WHERE id = ?',
+            [newPassword, id]
         );
         res.json("Password Updated!");
 

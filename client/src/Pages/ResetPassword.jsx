@@ -19,7 +19,7 @@ const ResetPassword = () => {
 
     const submit = async e => {
         e.preventDefault();
-        const res = await fetch(`http://localhost:5000/reset-password/:token`, {
+        const res = await fetch(`http://localhost:5000/reset?token=${encodeURIComponent(tokenData)}`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({password}),
