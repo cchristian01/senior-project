@@ -80,10 +80,10 @@ const ChooseMode = ({userName}) => {
 
    <div className=' flex justify-center gap-10 md:gap-30 w-100 md:w-full h-200'>
        
-        <SubjectCard name={mode1} link={"/chooseMode"} /> 
-        <Link key={subjName} to={`/course/${subjName}`} >
-        <SubjectCard name={mode2} link={"/course"} />
-        </Link>
+        <SubjectCard name={mode1} link={`/gameMode/${subjName}`} /> 
+
+        <SubjectCard name={mode2} link={`/course/${subjName}`} />
+
 
 
 

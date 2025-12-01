@@ -9,7 +9,7 @@ const TopMenu = () => {
             <Link to="/leaderboard"><button className='cursor-pointer'><li>Leaderboard</li></button></Link>
             <Link to="/view-score"><li>View Score</li></Link>
             <Link to="/chat"><button className='cursor-pointer'><li>Chat</li></button></Link>
-            <li>Settings</li>
+            <Link to="/settings" ><button className='cursor-pointer'><li>Settings</li></button></Link>
            
        </span>
     </ul>
