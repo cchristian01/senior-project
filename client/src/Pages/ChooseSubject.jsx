@@ -9,7 +9,7 @@ import Footer from '../Components/Footer.jsx'
 
 const ChooseSubject = ({userName}) => {
   let data;
-  const username = localStorage.getItem('usersname');
+  const username = sessionStorage.getItem('usersname');
 
   const [pathPercentage, setPathPercentage] = useState(0);
 

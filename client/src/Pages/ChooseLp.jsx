@@ -6,7 +6,7 @@ import TopMenu from '../Components/TopMenu.jsx'
 import Footer from '../Components/Footer.jsx'
 
 const ChooseLp = ({userName}) => {
-    const username = localStorage.getItem('usersname');
+    const username = sessionStorage.getItem('usersname');
     const updateUserScore = async() => {
         const res = await fetch('http://localhost:5000/api/new-user-score', {
             method: 'POST',

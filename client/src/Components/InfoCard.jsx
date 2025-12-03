@@ -50,7 +50,7 @@ const InfoCard = ({Subject, num, setNum}) => {
       4: 0
     };
     if(level > 1 ) {
-      total = JSON.parse(localStorage.getItem('totalObj'));
+      total = JSON.parse(sessionStorage.getItem('totalObj'));
     }
     let totalsSum;
     const calculateSum = () => {
@@ -71,7 +71,7 @@ const InfoCard = ({Subject, num, setNum}) => {
         console.log("current correctNum: ", correctNum);
         const newTotal = calculateSum();
 
-       const data =  JSON.parse(localStorage.getItem('courseData'));
+       const data =  JSON.parse(sessionStorage.getItem('courseData'));
        console.log(data)
         if( data.result.length == 0 || newTotal > data.result[0]?.points_earned){
           console.log("yes")
@@ -115,10 +115,10 @@ const InfoCard = ({Subject, num, setNum}) => {
       //if(correctNum > JSON.parse(localStorage.getItem('totalObj')[level])){
       total[level] = correctNum;
       //}
-      localStorage.setItem('totalPoints', totalsSum);
-      localStorage.setItem('totalObj', JSON.stringify(total));
+      sessionStorage.setItem('totalPoints', totalsSum);
+      sessionStorage.setItem('totalObj', JSON.stringify(total));
       
-      const savedTotalObj = JSON.parse(localStorage.getItem('totalObj'));
+      const savedTotalObj = JSON.parse(sessionStorage.getItem('totalObj'));
       console.log('current total:', savedTotalObj[level]);
       if(level > 1) {
         console.log('level below total:',savedTotalObj[level - 1]);

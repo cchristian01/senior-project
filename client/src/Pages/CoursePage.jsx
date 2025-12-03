@@ -13,7 +13,7 @@ export const CoursePage = ({subject}) => {
     const course = subjName;
     let data;
     useEffect(() => {
-        const stored = localStorage.getItem('courseData');
+        const stored = sessionStorage.getItem('courseData');
         if(stored) {
             data = JSON.parse(stored);
             console.log(`This is data ${data.subjId}`);

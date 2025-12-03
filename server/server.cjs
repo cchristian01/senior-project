@@ -56,11 +56,12 @@ const io = new Server(server, {
 });
 
 const onlineUsers = new Map();
+const socketToUser = new Map();
+
 
 io.on('connection', (socket) => {
     console.log('Socket connected:', socket.id);
 
-    const socketToUser = new Map();
 
     socket.on('user_connected', async (username) => {
         if(!username || typeof username !== 'string') return;
@@ -83,8 +84,18 @@ io.on('connection', (socket) => {
 
         const message = await Message.create({senderUsername, receiverUsername, content});
         const receiverSocket = onlineUsers.get(receiverUsername);
+        console.log("onlineUsers:", onlineUsers);
+        console.log("receiverUsername:", receiverUsername);
+        console.log("receiverSocket:", receiverSocket);
+
         if(receiverSocket) {
-            io.to(receiverSocket).emit('receive_message', message);
+
+            io.to(receiverSocket).emit('receive_message',{
+        senderUsername: senderUsername,
+        receiverUsername: receiverUsername,
+        content: content,
+        delivered: message.delivered
+    });
             message.delivered = true;
             await message.save();
 

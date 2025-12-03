@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import Footer from '../Components/Footer.jsx'
 
 const ViewScore = () => {
-  const username = localStorage.getItem('usersname');
+  const username = sessionStorage.getItem('usersname');
   let data;
   const [score, setScore] = useState(0);
   useEffect(() => {

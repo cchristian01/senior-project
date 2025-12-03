@@ -26,7 +26,7 @@ const LoginPage = ({username, setUsername}) => {
                 setToken(response.data.token);
                 setIsLoggedIn(true);
                 setErrorMessage('');
-                localStorage.setItem('usersname', username);
+                sessionStorage.setItem('usersname', username);
             }
         } catch(error) {
             setErrorMessage('Invalid credentials');

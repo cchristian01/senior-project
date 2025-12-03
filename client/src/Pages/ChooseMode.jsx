@@ -13,7 +13,7 @@ const ChooseMode = ({userName}) => {
     const mode2 = "Non Game Mode";
 
     const { subjName }= useParams();
-    const username = localStorage.getItem('usersname');
+    const username = sessionStorage.getItem('usersname');
     const pathProgress = localStorage.getItem('pathProgress');
     let data;
     const [subjPercentage, setSubjPercentage] = useState(0);

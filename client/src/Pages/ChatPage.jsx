@@ -5,7 +5,7 @@ import io from 'socket.io-client'
 
 const socket = io("http://localhost:5000");
 const ChatPage = () => {
-    const username = localStorage.getItem('usersname');
+    const username = sessionStorage.getItem('usersname');
     const [search, setSearch] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const handleInputChange = (e) => {setSearch(e.target.value);};
@@ -28,7 +28,7 @@ const ChatPage = () => {
             socket.disconnect();
         };
 
-    }, [username]);
+    }, []);
 
     const sendMessage = () => {
         if(!chatWithUser || !message.trim()) return;
@@ -83,7 +83,9 @@ const ChatPage = () => {
     const setChatPartner = (user) => {
         setChatWithUser(user);
         console.log(chatWithUser)
-    }
+   }
+
+
 
 
   return (
@@ -125,12 +127,12 @@ const ChatPage = () => {
         {messages.map((msg, idx) => (
             <div 
                 key={idx}
-                style={{textAlign: msg.senderUsername === username || msg.self ? "right" : "left",}}>
-                    <p><strong>{msg.senderUsername}: </strong> {msg.content}</p>
+                style={{textAlign: msg.senderUsername === username || msg.self ? "right" : "left", margin: !(msg.senderUsername===username) && !msg.self?"0px 20px":"0px",color:(msg.senderUsername===username) && msg.self?"purple":"black"}}>
+                    <p><strong>{msg.senderUsername===username? `You → ${msg.receiverUsername}` : `${msg.senderUsername} → You`} </strong> {msg.content}</p>
             </div>
         ))}
           <div className='absolute pt-[80%] pl-[10%] w-full h-[20%] '>
-            <input type="text" onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> e.key==="Enter" && sendMessage()}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage()}>Send</button></span>
+            <input type="text" onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> e.key==="Enter" && sendMessage}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
 
 
           </div>
