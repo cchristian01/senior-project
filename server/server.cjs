@@ -448,6 +448,26 @@ app.post('/api/new-user-score', async (req, res) => {
     }
 });
 
+app.post('/get-email', async (req, res) => {
+    const {name} = req.body;
+    const connection = await pool.getConnection();
+    try{
+
+        const [rows] = await connection.execute(
+            'SELECT ln_email FROM ln_users WHERE ln_username = ?',
+            [name]
+        );
+
+        res.json(rows);
+    }
+    catch(err){
+        console.log('Error: ', err.message);
+        res.status(500).json({error: 'Internal Server Error'});
+    }finally{
+        connection.release();
+    }
+});
+
 
 app.post("/forgot-password", async (req, res) => {
      const {mail} = req.body;

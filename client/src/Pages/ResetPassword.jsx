@@ -5,6 +5,7 @@ const ResetPassword = () => {
     const location = useLocation();
     const [password, setPassword] = useState("");
     const [tokenData, setTokenData] = useState(null);
+    const [updated, setUpdated] = useState(false);
 
     useEffect(() => {
       const params = new URLSearchParams(location.search);
@@ -26,7 +27,8 @@ const ResetPassword = () => {
         });
 
 
-        alert(await res.text());
+        if(res.ok)
+            setUpdated(true);
     };
   return (
    <form onSubmit={submit}>
@@ -37,7 +39,9 @@ const ResetPassword = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <button>Reset</button>
+      <button className='cursor-pointer'>Reset</button>
+      {updated?<p className='text-green-700 font-bold'>Your password has been updated.</p>:<></>}
+
     </form>
   )
 }

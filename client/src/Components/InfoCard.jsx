@@ -17,6 +17,7 @@ const InfoCard = ({Subject, num, setNum}) => {
     const nextQuestion = () => {
       setNum(prev => { if(prev < 9){return prev + 1} return prev})
       setAnswer('');
+      setSubmitted(false);
     }
 
       const prevQuestion = () => {
@@ -24,8 +25,9 @@ const InfoCard = ({Subject, num, setNum}) => {
         }
         const [answers, setAnswers] = useState([]);
         const [answer, setAnswer] = useState('');
+        const [submitted, setSubmitted] = useState(false);
     const handleSubmit = (e) =>{
-      alert('Answer Submitted!')
+      setSubmitted(true);
       e.preventDefault();
       setAnswers((prevAnswers) => [...prevAnswers, (answer)]);
     }
@@ -146,8 +148,9 @@ const InfoCard = ({Subject, num, setNum}) => {
         <button className='cursor-pointer p-8 m-2 mt-15 text-green-600 font-bold' onClick={nextLesson}>Continue to Next Lesson</button>
 
         </div>:
-    <div className='bg-gray-200 h-80 w-200 font-bold text-xl text-center'>
+    <div className='bg-gray-200 h-100 w-200 font-bold text-xl text-center'>
       {questions? <h1>{num + 1}/10</h1>:<h1></h1>}
+      {submitted?<p className='font-bold text-green-700 text-md'>Answer Submitted.</p>:<></>}
       
         <p className='h-20 text-center mt-20'>{questions? Subject[`${part}`].questions[num] : Subject[`${part}`].info[num]}
         {questions?

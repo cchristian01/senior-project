@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export default function PasswordReset() {
   const [email, setEmail] = useState("");
+  const [linkSent, setLinkSent] = useState(false);
+
 
   const handleReset = async (e) => {
     e.preventDefault();
@@ -11,7 +13,8 @@ export default function PasswordReset() {
     body: JSON.stringify({mail: email})
    });
 
-   alert(await res.text());
+   if(res.ok)
+      setLinkSent(true);
   };
 
   return (
@@ -23,8 +26,8 @@ export default function PasswordReset() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button type="submit">Send Reset Email</button>
-      <p></p>
+      <button className='cursor-pointer' type="submit">Send Reset Email</button>
+      {linkSent?<p className='text-green-700 font-bold'>A password reset link has been sent to your email.</p>:<></>}
     </form>
   );
 }
