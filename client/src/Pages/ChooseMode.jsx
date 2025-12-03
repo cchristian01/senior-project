@@ -8,6 +8,7 @@ import TopMenu from '../Components/TopMenu.jsx'
 import Footer from '../Components/Footer.jsx'
 
 const ChooseMode = ({userName}) => {
+
     const mode1 = "Game Mode";
     const mode2 = "Non Game Mode";
 

@@ -68,9 +68,8 @@ const ChooseSubject = ({userName}) => {
 
     <div className=' grid grid-cols-4 h-200'  >
         {learningPaths[learningPaths.paths[0]].map((subject) => (
-         <Link key={subject} to={`/chooseMode/${subject}`}>
-         <SubjectCard name={subject}/>
-         </Link>))}
+         <SubjectCard name={subject} link={`/chooseMode/${subject}`} />
+         ))}
 
 
 

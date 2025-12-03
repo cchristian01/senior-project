@@ -1,11 +1,15 @@
-import React from 'react'
+import {React, useRef, useEffect} from 'react'
 import Footer from '../Components/Footer'
 import SubjectCard from '../Components/SubjectCard'
 import {Link, useParams} from 'react-router-dom'
 
 const GamePage = () => {
     const game1 = "MathRun";
+    const iframeRef = useRef(null)
     const {subjName} = useParams();
+
+
+
   return (
     <>
      <div className='bg-yellow-400'>
@@ -15,10 +19,11 @@ const GamePage = () => {
         <hr />
 
         <div className=' h-120 md:h-160 mt-10 md:mt-12'>
-            <SubjectCard name={game1} />
+            <SubjectCard name={game1} link={`/math-game/${subjName}`} />
 
         </div>
-    
+
+      
     <Footer />
     </>
   )

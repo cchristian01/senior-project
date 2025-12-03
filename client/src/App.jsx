@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '../../public/vite.svg'
+import viteLogo from './vite.svg'
 import LoginPage from './Pages/Login-full.jsx'
 import SignupPage from './Pages/Signup-full.jsx'
 import HomePage from './Pages/HomePage.jsx'
@@ -18,7 +18,7 @@ import PasswordReset from './Pages/PasswordReset.jsx'
 import ResetPassword from './Pages/ResetPassword.jsx'
 import AccountSettings from './Pages/AccountSettings.jsx'
 import GamePage from './Pages/GamePage.jsx'
-
+import GameWrapper from './Pages/GameWrapper.jsx'
 
 
 
@@ -43,7 +43,7 @@ function App() {
 
       <Route path="/chooseMode/:subjName" element={<ChooseMode userName={username} />} /> 
       <Route path="/gameMode/:subjName" element={<GamePage />} />
-
+      <Route path="/math-game/:subjName" element={<GameWrapper /> } />
       <Route path="/course/:subjName" element={<CoursePage />} subject={subject}/>
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/leaderboard" element={<Leaderboard />} />

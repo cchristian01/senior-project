@@ -10,6 +10,17 @@ export default defineConfig({
   ],
   server: {
     historyApiFallback: true,
+    fs: {
+      strict: false
+    },
+  },
+
+    build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: '[name].[ext]',
+      },
+    },
   },
   root: '.',
 })
