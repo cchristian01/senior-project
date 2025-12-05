@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react'
+import {React, useState, useEffect, useRef} from 'react'
 import Footer from '../Components/Footer.jsx'
 import DisplayBox from '../Components/DisplayBox.jsx'
 import io from 'socket.io-client'
@@ -11,6 +11,7 @@ const ChatPage = () => {
     const handleInputChange = (e) => {setSearch(e.target.value);};
     const [results, setResults] = useState([]);
     const [chatWithUser, setChatWithUser] = useState('');
+    const inputRef = useRef();
 
 
     const [message, setMessage] = useState('');
@@ -25,7 +26,6 @@ const ChatPage = () => {
 
         return () => {
             socket.off("receive_message");
-            socket.disconnect();
         };
 
     }, []);
@@ -43,6 +43,7 @@ const ChatPage = () => {
 
         setMessages((prev) => [...prev, {...msg, self:true}]);
         setMessage('');
+        clear();
     }
 
     console.log(messages);
@@ -83,6 +84,10 @@ const ChatPage = () => {
     const setChatPartner = (user) => {
         setChatWithUser(user);
         console.log(chatWithUser)
+   }
+
+   const clear = () =>{
+        inputRef.current.value="";
    }
 
 
@@ -132,7 +137,7 @@ const ChatPage = () => {
             </div>
         ))}
           <div className='absolute pt-[80%] pl-[10%] w-full h-[20%] '>
-            <input type="text" onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> e.key==="Enter" && sendMessage}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
+            <input type="text" ref={inputRef}onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> {if(e.key==="Enter") sendMessage()}}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
 
 
           </div>

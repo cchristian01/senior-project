@@ -65,6 +65,7 @@ io.on('connection', (socket) => {
 
     socket.on('user_connected', async (username) => {
         if(!username || typeof username !== 'string') return;
+        console.log("user_connected RECEIVED:", username, typeof username);
 
         onlineUsers.set(username, socket.id);
         socketToUser.set(socket.id, username);
@@ -85,8 +86,10 @@ io.on('connection', (socket) => {
         const message = await Message.create({senderUsername, receiverUsername, content});
         const receiverSocket = onlineUsers.get(receiverUsername);
         console.log("onlineUsers:", onlineUsers);
+        console.log("senderUsername:", senderUsername);
         console.log("receiverUsername:", receiverUsername);
         console.log("receiverSocket:", receiverSocket);
+        console.log("onlineUsers has:", [...onlineUsers.keys()]);
 
         if(receiverSocket) {
 

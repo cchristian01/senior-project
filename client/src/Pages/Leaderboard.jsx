@@ -41,7 +41,7 @@ const Leaderboard = () => {
                     <tr className='p-3' key={idx}> 
                     <td className='border'>{idx + 1}</td>
                     {idx ==0 ?<td className='border'>🏆 {leader.ln_username}</td>: <td className='border'>{leader.ln_username}</td>}
-                     <td className='border'>{leader.ln_score}</td>
+                     <td className='border'>{leader.ln_score? leader.ln_score: 0}</td>
                      </tr>
                 ))}
             

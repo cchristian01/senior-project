@@ -15,7 +15,10 @@ const ViewScore = () => {
     });
     data = await res.json();
     console.log(data);
+    
     setScore(data[0].ln_score);
+    if(!score)
+        setScore(0);
   };
 
 

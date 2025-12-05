@@ -3,7 +3,7 @@ import Footer from '../Components/Footer.jsx'
 
 const AccountSettings = () => {
   const maskedPassword = "•".repeat(8);
-  const user = localStorage.getItem('usersname');
+  const user = sessionStorage.getItem('usersname');
   let data;
   const [email, setEmail] = useState('');
   const [linkSent, setLinkSent] = useState(false);

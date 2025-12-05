@@ -1,17 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports =  {
+  darkMode: "class",
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  theme: {
-    extend: {
-      fontFamily: {
-        cursive: ['Marck Script', 'cursive'],
-        'mr-dafoe': ['Mr Dafoe', 'cursive']
-      },
-    },
-  },
-  plugins: [],
-}
-
+};

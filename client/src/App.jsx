@@ -38,7 +38,7 @@ function App() {
       <Route path="/" element={<HomePage />}/>
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage username={username} setUsername={setUsername} />} />
-      <Route path="/choose" element= {<ChooseLp userName={username}/>}/>
+      <Route path="/chooseLp" element= {<ChooseLp userName={username}/>}/>
       <Route path="/chooseSubj" element={<ChooseSubject userName={username} />} />
 
       <Route path="/chooseMode/:subjName" element={<ChooseMode userName={username} />} /> 

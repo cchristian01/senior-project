@@ -3,8 +3,8 @@ import Header from '../Components/Header.jsx'
 import Footer from '../Components/Footer.jsx'
 import ChooseLp from './ChooseLp.jsx'
 import axios from 'axios'
-import React, { useState } from 'react'
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import {Link, useNavigate} from 'react-router-dom';
 
 const LoginPage = ({username, setUsername}) => {
     const [password, setPassword] = useState('');
@@ -34,13 +34,20 @@ const LoginPage = ({username, setUsername}) => {
 
         
     }
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(isLoggedIn){
+            navigate('/chooseLp');
+        }
+    },[isLoggedIn, navigate])
 
     
 
+    
 
-
-    return(
-        isLoggedIn ? <ChooseLp userName={username}/> :
+    return( 
+        //isLoggedIn ? <ChooseLp userName={username}/> :
     <>
         <Header />
         <div className="text-left">
