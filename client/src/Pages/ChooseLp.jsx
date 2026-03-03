@@ -40,9 +40,9 @@ const ChooseLp = ({userName}) => {
 
 
 
-    <div className='h-150'>
-        <SubjectCard name={learningPaths['paths'][0]} link={"/chooseSubj"} />
-
+    <div className='grid grid-cols-2 h-150'>
+        <SubjectCard name={learningPaths['paths'][0]} link={`/chooseSubj/${learningPaths['paths'][0].replace(/\s+/g,"-")}`} />
+        <SubjectCard name={learningPaths['paths'][1]} link={`/chooseSubj/${learningPaths['paths'][1].replace(/\s+/g,"-")}`} />
     </div>
 
     <Footer />

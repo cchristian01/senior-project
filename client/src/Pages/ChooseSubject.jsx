@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import learningPaths from '../assets/learningPaths.jsx'
 import SubjectCard from '../Components/SubjectCard.jsx'
 import ProgressBar from '../Components/ProgressBar.jsx'
@@ -10,6 +10,11 @@ import Footer from '../Components/Footer.jsx'
 const ChooseSubject = ({userName}) => {
   let data;
   const username = sessionStorage.getItem('usersname');
+  const {pathName} = useParams();
+  console.log(pathName);
+  const lpath = pathName.replace(/-/g," ");
+  console.log(lpath);
+  
 
   const [pathPercentage, setPathPercentage] = useState(0);
 
@@ -20,13 +25,15 @@ const ChooseSubject = ({userName}) => {
         const res = await fetch('http://localhost:5000/api/get-percentage', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({name: username, path: learningPaths.paths[0]})
+          body: JSON.stringify({name: username, path: lpath})
         });
 
         data = await res.json();
-        console.log(data)
+        console.log(data[0]);
+        if(data[0]){
         setPathPercentage(data[0].path_value);
-        localStorage.setItem('pathProgress', data[0].path_value);
+        }else{setPathPercentage(0)}
+        sessionStorage.setItem('pathProgress', pathPercentage);
     };
     setPercentage();
     }, []);
@@ -57,18 +64,18 @@ const ChooseSubject = ({userName}) => {
     <div className='h-70'>
       <div className='flex justify-end'>
         <div className=' w-80 md:w-100 px-2  mr-5 pt-8 md:pt-10 h-25 md:h-30 bg-red-700'>
-            <h1 className='text-xl md:text-2xl font-bold text-white text-center'>Current Learning Path: {learningPaths.paths[0]}</h1>
+            <h1 className='text-xl md:text-2xl font-bold text-white text-center'>Current Learning Path: {lpath}</h1>
         </div>
       </div>
         
-        <ProgressBar barName={learningPaths.paths[0]} progress={pathPercentage} />
+        <ProgressBar barName={lpath} progress={pathPercentage} />
     </div>
 
 
 
     <div className=' grid grid-cols-4 h-200'  >
-        {learningPaths[learningPaths.paths[0]].map((subject) => (
-         <SubjectCard name={subject} link={`/chooseMode/${subject}`} />
+        {learningPaths[lpath].map((subject) => (
+         <SubjectCard name={subject} link={`/chooseMode/${pathName}/${subject}`} />
          ))}
 
 

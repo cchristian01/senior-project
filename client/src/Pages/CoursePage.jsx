@@ -6,11 +6,12 @@ import Header from '../Components/Header.jsx'
 import QuestionSection from '../Components/QuestionSection'
 
 export const CoursePage = ({subject}) => {
-    const {subjName } = useParams();
+    const {pathName,subjName } = useParams();
     const [num, setNum] = useState(0);
     const [component, setComponent] = useState(null);
     let level = 1;
     const course = subjName;
+    const currentPath = pathName.replace(/-/g," ");
     let data;
     useEffect(() => {
         const stored = sessionStorage.getItem('courseData');
@@ -21,7 +22,9 @@ export const CoursePage = ({subject}) => {
         }
     }, [])
 
-    const subjects = { "Addition": {
+    const subjects= {
+        "Elementary Math":{
+         "Addition": {
 
         level1: {
         info: ["Single Digit Addition",
@@ -227,6 +230,97 @@ export const CoursePage = ({subject}) => {
                     answers: [1139, 631, 12, 207, 53, 21, 4, 31, 2, 3559],
                 },
         }
+    },
+    "Basic Geometry":{
+        "2D-Shapes":{
+            level1: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level2: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level3: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level4: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+        },
+            "3D-Shapes":{
+            level1: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level2: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level3: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level4: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+        },
+            "Measurements":{
+            level1: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level2: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level3: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level4: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+        },
+            "Lines & Angles":{
+            level1: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level2: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level3: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+             level4: {
+                info: [],
+                questions: [],
+                answers: [],
+            },
+        },
+    }
     };
  
     
@@ -246,7 +340,7 @@ export const CoursePage = ({subject}) => {
 
     <div className='h-150 flex justify-center bg-gray-700'>
 
-    <InfoCard Subject={subjects[subjName]} num={num} setNum={setNum}/> 
+    <InfoCard Subject={subjects[currentPath][subjName]} num={num} setNum={setNum}/> 
   
         
         

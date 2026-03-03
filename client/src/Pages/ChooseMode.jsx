@@ -13,11 +13,12 @@ const ChooseMode = ({userName}) => {
     const mode2 = "Non Game Mode";
 
     const { subjName }= useParams();
+    const {pathName} = useParams();
     const username = sessionStorage.getItem('usersname');
-    const pathProgress = localStorage.getItem('pathProgress');
+    const pathProgress = sessionStorage.getItem('pathProgress');
     let data;
     const [subjPercentage, setSubjPercentage] = useState(0);
-    const currentPath = learningPaths.paths[0];
+    const currentPath = pathName.replace(/-/g," ");
     
 
     const input = {
@@ -25,6 +26,7 @@ const ChooseMode = ({userName}) => {
         path: currentPath,
         user: username,
     };
+    console.log(currentPath)
     useEffect (() => {
     const getProgress = async() => {
     const res = await fetch('http://localhost:5000/api/query-chain', {
@@ -69,11 +71,11 @@ const ChooseMode = ({userName}) => {
     <div className='h-70'>
    <div className='h-40 flex justify-end '>
        <div className=' w-80 md:w-100 px-2  mr-5 pt-8 md:pt-10 h-25 md:h-30 bg-red-700'>
-           <h1 className='text-xl md:text-2xl font-bold text-white text-center'>Current Learning Path: {learningPaths.paths[0]}</h1>
+           <h1 className='text-xl md:text-2xl font-bold text-white text-center'>Current Learning Path: {currentPath}</h1>
        </div>
    </div>
 
-    <ProgressBar barName={learningPaths.paths[0]} progress={Number(pathProgress)} />
+    <ProgressBar barName={currentPath} progress={Number(pathProgress)} />
     <ProgressBar barName={subjName} progress={subjPercentage} />
 
    </div>
@@ -83,7 +85,7 @@ const ChooseMode = ({userName}) => {
        
         <SubjectCard name={mode1} link={`/gameMode/${subjName}`} /> 
 
-        <SubjectCard name={mode2} link={`/course/${subjName}`} />
+        <SubjectCard name={mode2} link={`/course/${pathName}/${subjName}`} />
 
 
 

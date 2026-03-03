@@ -39,12 +39,12 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage username={username} setUsername={setUsername} />} />
       <Route path="/chooseLp" element= {<ChooseLp userName={username}/>}/>
-      <Route path="/chooseSubj" element={<ChooseSubject userName={username} />} />
+      <Route path="/chooseSubj/:pathName" element={<ChooseSubject userName={username} />} />
 
-      <Route path="/chooseMode/:subjName" element={<ChooseMode userName={username} />} /> 
+      <Route path="/chooseMode/:pathName/:subjName" element={<ChooseMode userName={username} />} /> 
       <Route path="/gameMode/:subjName" element={<GamePage />} />
       <Route path="/math-game/:subjName" element={<GameWrapper /> } />
-      <Route path="/course/:subjName" element={<CoursePage />} subject={subject}/>
+      <Route path="/course/:pathName/:subjName" element={<CoursePage />} subject={subject}/>
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/view-score" element={<ViewScore />} />
