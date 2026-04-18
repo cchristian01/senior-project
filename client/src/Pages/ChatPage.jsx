@@ -115,8 +115,8 @@ const ChatPage = () => {
     </div>
             
     <h1 className='text-left text-black-600 ml-3 md:ml-8 text-md md:text-xl font-bold mb-3 md:mb-4'>| Chat History |</h1>
-    <div className='grid grid-cols-2 h-10 p-0 md:h-160 mb-30'>
-        <div className='text-left  ml-2 bg-gray-200 rounded-lg h-full w-30 md:w-50'>
+    <div className='grid grid-cols-[30%_50%] gap-0 h-10 m-0 p-0 md:h-160 mb-30 '>
+        <div className='text-left  ml-2 bg-gray-200 rounded-lg h-[full] w-[full] md:w-[full]'>
             <ul>
                 <li></li>
             </ul>
@@ -124,7 +124,7 @@ const ChatPage = () => {
 
 
 
-  <div className='bg-gray-100 rounded-xl text-left h-70 md:h-115 w-90  md:w-110 p-3 md:p-8  shadow-xl z-3'>
+  <div className='bg-gray-100 relative rounded-xl text-left h-full md:h-[full] w-full align-left md:w-[full] m-0 pb-10   shadow-xl z-3'>
       <h1 className='bg-black-600 text-center font-bold text-lg'>Current Chat</h1>
       <h2 className='bg-black-600 text-left font-bold text-lg'>Recipient: </h2> <span> <h2 className='font-bold text-gray-500'>{chatWithUser} </h2></span> 
       <div className='bg-gray-50 relative rounded-xl overflow-scroll w-[0.8] h-[80%] mb-6 m-2 md:m-4'>
@@ -137,11 +137,14 @@ const ChatPage = () => {
             </div>
         ))}
           <div className='absolute pt-[80%] pl-[10%] w-full h-[20%] '>
-            <input type="text" ref={inputRef}onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> {if(e.key==="Enter") sendMessage()}}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
 
 
           </div>
+
       </div>
+      <div className="absolute w-full ">
+                  <textarea className='ml-[8%] border-b-2 border-l focus:border-gray outline-0' type="text" ref={inputRef}onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> {if(e.key==="Enter") sendMessage()}}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
+        </div>
     </div>
 
 
