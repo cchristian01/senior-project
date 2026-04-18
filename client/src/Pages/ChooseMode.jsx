@@ -52,7 +52,7 @@ const ChooseMode = ({userName}) => {
 
 
     return (
-    <>
+    <div className='dark:bg-black'>
     <div className="text-left">
        <h1 className="text-red-500 font-bold text-3xl">LearnNow</h1> 
        
@@ -60,15 +60,15 @@ const ChooseMode = ({userName}) => {
         <TopMenu />
        
        
-       <div className="text-right"><Link to="/"><button className="cursor-pointer bg-black hover:bg-gray-700 mr-2 mt-5 md:mt-10 md:mr-5 text-white font-bold rounded-lg shadow-lg p-1 md:p-3 w-20 md:w-35">Logout</button></Link></div>
+       <div className="text-right"><Link to="/"><button className="cursor-pointer bg-black hover:bg-gray-700 mr-2 mt-5 md:mt-10 md:mr-5 text-white dark:bg-white dark:text-black font-bold rounded-lg shadow-lg p-1 md:p-3 w-20 md:w-35">Logout</button></Link></div>
        </div>
        
 
    <div className='h-20 text-left'>
         
-       <div className="mb-5"><h1 className="text-4xl">Welcome, {username}</h1></div>
+       <div className="mb-5 dark:text-white"><h1 className="text-4xl">Welcome, {username}</h1></div>
        
-       <hr/>
+       <hr className='dark:text-white'/>
    </div>
    
     <div className='h-70'>
@@ -96,7 +96,7 @@ const ChooseMode = ({userName}) => {
    </div> 
 
    <Footer />
-   </>
+   </div>
   )
 }
 
