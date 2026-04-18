@@ -1,2 +1,19 @@
 @import "tailwindcss";
 
+@layer base {
+  /* This ensures that 'dark' class on <html> triggers dark: utilities */
+  :root {
+    --color-background: #ffffff;
+    --color-text: #000000;
+  }
+
+  .dark {
+    --color-background: #000000;
+    --color-text: #ffffff;
+  }
+}
+
+/* In v4, if manual toggling isn't working, 
+   ensure you aren't strictly bound to system settings 
+*/
+@variant dark (&:where(.dark, .dark *));

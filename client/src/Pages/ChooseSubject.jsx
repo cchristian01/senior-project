@@ -80,7 +80,7 @@ const ChooseSubject = ({userName}) => {
     <div className='h-70'>
       <div className='flex justify-end'>
         <div className=' w-80 md:w-100 px-2  mr-5 pt-8 md:pt-10 h-25 md:h-30 bg-red-700'>
-            <h1 className='text-xl md:text-2xl font-bold text-white text-center'>Current Learning Path: {lpath}</h1>
+            <h1 className='text-xl md:text-2xl font-bold text-white text-center'>Current Learning Path: <br/> {lpath}</h1>
         </div>
       </div>
         

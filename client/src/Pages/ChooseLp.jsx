@@ -17,7 +17,7 @@ const ChooseLp = ({userName}) => {
 
     updateUserScore();
   return (
-    <>
+    <div className='dark:bg-black'>
     <div className="text-left">
         <h1 className="text-red-500 font-bold text-3xl">LearnNow</h1> 
         <span> <img/> </span>
@@ -27,14 +27,14 @@ const ChooseLp = ({userName}) => {
 
     <div className='h-20 text-left'>
          
-        <div className="mb-5"><h1 className="text-4xl">Welcome, {username}</h1></div>
+        <div className="mb-5"><h1 className="text-4xl dark:text-white">Welcome, {username}</h1></div>
         
-        <hr/>
+        <hr className='dark:text-white'/>
     </div>
 
     <div className='h-40 flex justify-end '>
-        <div className=' w-80 md:w-100 px-2  mr-5 pt-8 md:pt-10 h-25 md:h-30 bg-red-700'>
-            <h1 className='text-2xl md:text-3xl font-bold text-white text-center'>Select a Learning Path</h1>
+        <div className=' w-80 md:w-100 px-2  mr-5 pt-8 md:pt-10 h-25 md:h-30 bg-red-700 dark:bg-white'>
+            <h1 className='text-2xl md:text-3xl font-bold text-white dark:text-red-700 text-center'>Select a Learning Path</h1>
         </div>
     </div>
 
@@ -46,7 +46,7 @@ const ChooseLp = ({userName}) => {
     </div>
 
     <Footer />
-    </>
+    </div>
   )
 }
 
