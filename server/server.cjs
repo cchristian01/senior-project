@@ -303,7 +303,7 @@ app.post('/api/update-score', async (req, res) => {
 
 
         const pathPercentage = parseFloat(newScore/pathPoints);
-    if(update) {
+    if(!update) {
     const [insert] = await connection.execute(
         'INSERT INTO ln_progress VALUES(?,?,?,?,?,?)',
         [user, path, subj, newScore, subjPercentage, pathPercentage ]

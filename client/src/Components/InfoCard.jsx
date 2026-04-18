@@ -42,7 +42,8 @@ const InfoCard = ({Subject, num, setNum}) => {
       console.log(list2)
       return count;
     }
-    const correctNum = countMatches(Subject[`${part}`].answers, answers);
+    const lowercase = answers.map(item => typeof item ==='string'?item.toLowerCase():item);
+    const correctNum = countMatches(Subject[`${part}`].answers, lowercase);
     let total = {
       1: 0,
       2: 0,

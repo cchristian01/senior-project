@@ -234,9 +234,28 @@ export const CoursePage = ({subject}) => {
     "Basic Geometry":{
         "2D-Shapes":{
             level1: {
-                info: [],
-                questions: [],
-                answers: [],
+                info: ["Identifying Shapes is important, all objects have a shape and we will teach you about the most common simple shapes",
+                    "▲ : A triangle is a shape with three sides ",
+                    "■ : A square has 4 sides all with equal length",
+                    "\u25AE: A rectangle has 4 sides with two pairs of equal sides parallel",
+                    "●: A circle is a round shape made of points the same distance from the center",
+                    "★: A star has 5 points",
+                    "⬟: A pentagon has 5 sides",
+                    "⬢: A hexagon has 6 sides",
+                    "These are seven simple shapes we will learn more about them later"
+                ],
+                questions: ["Name this shape: ⬢",
+                    "Name this shape: ⬢",
+                    "Name this shape: ▲",
+                    "Name this shape: ■",
+                    "Name this shape: ⬟",
+                    "Name this shape: ★",
+                    "Name this shape: \u25AE",
+                    "Name this shape: ●",
+                    "Name this shape: ★",
+                    "Name this shape: ●"
+                ],
+                answers: ["hexagon","hexagon","triangle","square","pentagon","star","rectangle","circle","star","circle"],
             },
              level2: {
                 info: [],

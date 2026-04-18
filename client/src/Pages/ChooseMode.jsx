@@ -15,7 +15,8 @@ const ChooseMode = ({userName}) => {
     const { subjName }= useParams();
     const {pathName} = useParams();
     const username = sessionStorage.getItem('usersname');
-    const pathProgress = sessionStorage.getItem('pathProgress');
+    const pathProgress = sessionStorage.getItem('pathPercentage');
+    console.log(pathProgress);
     let data;
     const [subjPercentage, setSubjPercentage] = useState(0);
     const currentPath = pathName.replace(/-/g," ");
@@ -37,7 +38,7 @@ const ChooseMode = ({userName}) => {
 
     data = await res.json();
     console.log(data)
-    localStorage.setItem('courseData', JSON.stringify(data));
+    sessionStorage.setItem('courseData', JSON.stringify(data));
     if(!data.result.length == 0)
      {
         setSubjPercentage(data.result[0].subject_value);
@@ -48,6 +49,8 @@ const ChooseMode = ({userName}) => {
 
     getProgress();
 },[]);
+
+
     return (
     <>
     <div className="text-left">

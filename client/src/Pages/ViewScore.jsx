@@ -5,6 +5,7 @@ import Footer from '../Components/Footer.jsx'
 const ViewScore = () => {
   const username = sessionStorage.getItem('usersname');
   let data;
+  let score_val;
   const [score, setScore] = useState(0);
   useEffect(() => {
   const getScore = async() => {
@@ -14,11 +15,17 @@ const ViewScore = () => {
       body: JSON.stringify({name: username})
     });
     data = await res.json();
-    console.log(data);
-    
+    console.log(data[0]);
     setScore(data[0].ln_score);
-    if(!score)
-        setScore(0);
+    if(!data[0].ln_score){
+    score_val = 0;
+    }
+    else{
+      score_val = data[0].ln_score;
+
+    }
+    setScore(score_val);
+        
   };
 
 

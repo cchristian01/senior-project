@@ -9,6 +9,7 @@ import Footer from '../Components/Footer.jsx'
 
 const ChooseSubject = ({userName}) => {
   let data;
+  let path_val;
   const username = sessionStorage.getItem('usersname');
   const {pathName} = useParams();
   console.log(pathName);
@@ -29,14 +30,29 @@ const ChooseSubject = ({userName}) => {
         });
 
         data = await res.json();
-        console.log(data[0]);
-        if(data[0]){
-        setPathPercentage(data[0].path_value);
-        }else{setPathPercentage(0)}
-        sessionStorage.setItem('pathProgress', pathPercentage);
+        if(!data[0]){
+          path_val = 0;
+        }
+        else {
+          path_val = data[0].path_value;
+
+        }
+        console.log(path_val);
+        
+            
+         
+        setPathPercentage(path_val);
+        
+        console.log(pathPercentage);
+
+        sessionStorage.setItem('pathPercentage', path_val);
+        const val = sessionStorage.getItem('pathPercentage');
+        console.log(val);
     };
     setPercentage();
     }, []);
+  
+  
   return (
     <>
 
