@@ -350,7 +350,7 @@ export const CoursePage = ({subject}) => {
 
     <div>
         <Header />
-        <div className='bg-neutral-100 rounded-lg w-full h-20'>
+        <div className='bg-neutral-100 dark:bg-black dark:text-white w-full h-20'>
             <h1 className='flex justify-center pt-3 text-3xl font-bold'>{subjName}</h1>
         </div>
 

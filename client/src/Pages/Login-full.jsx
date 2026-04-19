@@ -48,12 +48,12 @@ const LoginPage = ({username, setUsername}) => {
 
     return( 
         //isLoggedIn ? <ChooseLp userName={username}/> :
-    <>
+    <div className='dark:bg-black dark:text-white'>
         <Header />
         <div className="text-left">
-            <button className="text-white ml-10 bg-gray-600 font-bold hover:bg-gray-500 cursor-pointer rounded-lg shadow-lg mt-10 p-3"><Link to="/">View HomePage</Link></button>
+            <button className="text-white ml-10 bg-gray-600 font-bold hover:bg-gray-500 cursor-pointer dark:bg-white dark:text-black rounded-lg shadow-lg mt-10 p-3"><Link to="/">View HomePage</Link></button>
         </div>
-    <h1 className="mt-40 font-[helvetica] font-bold text-center text-4xl text-gray-400">Welcome!</h1>
+    <h1 className="mt-40 font-[helvetica] font-bold text-center text-4xl dark:text-white text-gray-400">Welcome!</h1>
     <br/><br/>
     <Login onSubmit={handleSubmit} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
     <br/>
@@ -63,7 +63,7 @@ const LoginPage = ({username, setUsername}) => {
     </div>
     <div className="h-80"></div>
     <Footer />
-    </>
+    </div>
     );
 }
 

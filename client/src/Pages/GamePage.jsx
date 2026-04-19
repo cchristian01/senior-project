@@ -11,12 +11,12 @@ const GamePage = () => {
 
 
   return (
-    <>
-     <div className='bg-yellow-400'>
+    <div className='dark:bg-black'>
+     <div className='dark:text-white'>
             <h1 className='font-bold text-4xl my-8'>Games</h1>
         </div>
 
-        <hr />
+        <hr className='dark:text-white' />
 
         <div className=' h-120 md:h-160 mt-10 md:mt-12'>
             <SubjectCard name={game1} link={`/math-game/${subjName}`} />
@@ -25,7 +25,7 @@ const GamePage = () => {
 
       
     <Footer />
-    </>
+    </div>
   )
 }
 

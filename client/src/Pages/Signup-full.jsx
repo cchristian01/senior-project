@@ -37,7 +37,7 @@ const SignupPage = () => {
   };
 
   return (
-    <>
+    <div className='dark:bg-black dark:text-white'>
     <Header />
     <br/>
     <br/>
@@ -55,7 +55,7 @@ const SignupPage = () => {
 
     <Footer />
 
-    </>
+    </div>
   )
 }
 

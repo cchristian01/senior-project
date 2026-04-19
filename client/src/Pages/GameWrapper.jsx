@@ -31,12 +31,12 @@ const GamePage = () => {
   }, [subjName]);
 
   return (
-    <>
-     <div className='bg-yellow-400'>
+    <div className='dark:bg-black'>
+     <div className='dark:text-white'>
             <h1 className='font-bold text-4xl my-8'>Games</h1>
         </div>
 
-        <hr />
+        <hr className='dark:text-white' />
     
       <iframe
         ref={iframeRef}
@@ -45,8 +45,11 @@ const GamePage = () => {
         height="600"
         style={{ border: "none", marginTop: "20px" }}
       />
+      <div className='h-20'>
+
+      </div>
     <Footer />
-    </>
+    </div>
   )
 }
 

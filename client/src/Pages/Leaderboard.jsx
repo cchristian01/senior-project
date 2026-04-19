@@ -19,7 +19,7 @@ const Leaderboard = () => {
     }, []);
 
   return (
-    <>
+    <div className='dark:bg-black dark:text-white'>
     <div className='text-center mb-18'>
         <h1 className='font-bold text-4xl mt-1 font-bold text-red-600'>LearnNow</h1>
         <h1 className='font-bold text-5xl mt-3 font-bold'>-----Leaderboard-----</h1>
@@ -27,10 +27,10 @@ const Leaderboard = () => {
     </div>
 
     <hr/>
-<div className='bg-gray-300 mt-5 rounded-lg p-8 shadow-3xl py-4'>
-    <div className='h-70 md:h-110 w-[80%] mt-15 pt-6 text-center rounded-xl m-auto bg-gray-500'>
+<div className='bg-gray-300 dark:bg-white-800 mt-5 rounded-lg p-8 shadow-3xl py-4'>
+    <div className='h-70 md:h-110 w-[80%] mt-15 pt-6 text-center  rounded-xl m-auto bg-gray-500'>
         <h2 className='font-bold text-xl mb-5 text-white'>Top 5 Highest Scores</h2>
-        <div className='bg-gray-700 mb-15 text-white'>
+        <div className='bg-gray-700 mb-15 dark:bg-black text-white'>
             <table className='border border-black border-collapse table-auto w-full'>
                 <tr>
                     <th className='border'>Place</th>
@@ -55,7 +55,7 @@ const Leaderboard = () => {
     </div>
 
     <Footer />
-    </>
+    </div>
   )
 }
 

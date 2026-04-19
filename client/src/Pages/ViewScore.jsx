@@ -34,16 +34,16 @@ const ViewScore = () => {
   }, []);
 
   return (
-    <>
-     <div className='text-center mb-18'>
+    <div className='dark:bg-black dark:text-white'>
+     <div className='text-center mb-18 '>
         <h1 className='font-bold text-4xl mt-1 font-bold text-red-600'>LearnNow</h1>
         <h1 className='font-bold text-5xl mt-3 font-bold'>---------------</h1>
 
     </div>
 
     <hr />
-    <div className='bg-gray-300 relative h-150 md:200 rounded'>
-      <div className='bg-white absolute w-full rounded-xl p-3 mt-5 md:mt-8 md:p-5'>
+    <div className='bg-gray-300 relative h-150 dark:bg-black md:200 rounded'>
+      <div className='bg-white absolute w-full dark:bg-black rounded-xl p-3 mt-5 md:mt-8 md:p-5'>
         <table  className='border border-black border-collapse table-auto w-full'>
           <tr>
             <td className='border w-1/2 text-center'><h1 className='font-bold text-4xl'>Your Score</h1></td>
@@ -53,7 +53,7 @@ const ViewScore = () => {
       </div>
     </div>
     <Footer />
-    </>
+    </div>
   )
 }
 

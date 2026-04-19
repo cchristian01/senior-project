@@ -94,15 +94,15 @@ const ChatPage = () => {
 
 
   return (
-    <>
+    <div className='dark:bg-black'>
     <div className='text-center font-bold text-2xl md:text-3xl m-10 md:m-15'>
-        <h1 >Welcome to</h1> <span><h1 className='text-red-500 text-3xl md:text-4xl mb-8'>LearnNow Chat•••²</h1></span>
-        <hr />
+        <h1 className='dark:text-white'>Welcome to</h1> <span><h1 className='text-red-500 text-3xl md:text-4xl mb-8'>LearnNow Chat•••²</h1></span>
+        <hr className='dark:text-white' />
     </div>
     <div className='h-20 text-center w-full'>
         <div className='mt-12 mr-10 md:mr-50 md:mt-20 h-[0.6] w-full'>
             <form onSubmit={handleSubmit}>
-            <input className='rounded-lg text-lg'type="text" value={search} onChange={handleInputChange} placeholder='Search for a user...'/><span><button className='cursor-pointer hover:h-3'>🔍</button></span>
+            <input className='rounded-lg dark:bg-white text-lg'type="text" value={search} onChange={handleInputChange} placeholder='Search for a user...'/><span><button className='cursor-pointer hover:h-3'>🔍</button></span>
             </form>
 
             <ul className='bg-black-400 h-8'>
@@ -114,7 +114,7 @@ const ChatPage = () => {
         </div>
     </div>
             
-    <h1 className='text-left text-black-600 ml-3 md:ml-8 text-md md:text-xl font-bold mb-3 md:mb-4'>| Chat History |</h1>
+    <h1 className='text-left text-black-600 ml-3 md:ml-8 text-md md:text-xl font-bold dark:text-white mb-3 md:mb-4'>| Chat History |</h1>
     <div className='grid grid-cols-[30%_50%] gap-0 h-10 m-0 p-0 md:h-160 mb-30 '>
         <div className='text-left  ml-2 bg-gray-200 rounded-lg h-[full] w-[full] md:w-[full]'>
             <ul>
@@ -124,15 +124,27 @@ const ChatPage = () => {
 
 
 
-  <div className='bg-gray-100 relative rounded-xl text-left h-full md:h-[full] w-full align-left md:w-[full] m-0 pb-10   shadow-xl z-3'>
+  <div className='bg-gray-100 dark:bg-red-700 relative rounded-xl dark:text-white text-left h-full md:h-[full] w-full align-left md:w-[full] m-0 pb-10   shadow-xl z-3'>
       <h1 className='bg-black-600 text-center font-bold text-lg'>Current Chat</h1>
-      <h2 className='bg-black-600 text-left font-bold text-lg'>Recipient: </h2> <span> <h2 className='font-bold text-gray-500'>{chatWithUser} </h2></span> 
-      <div className='bg-gray-50 relative rounded-xl overflow-scroll w-[0.8] h-[80%] mb-6 m-2 md:m-4'>
+      <h2 className='bg-black-600 text-left font-bold text-lg'>Recipient: </h2> <span> <h2 className='font-bold dark:text-white text-gray-500'>{chatWithUser} </h2></span> 
+      <div className='bg-gray-50 dark:bg-black relative rounded-xl overflow-scroll w-[0.8] h-[80%] mb-6 m-2 md:m-4'>
         {messages.length === 0 && <p>No messages yet.</p>}
         {messages.map((msg, idx) => (
             <div 
                 key={idx}
-                style={{textAlign: msg.senderUsername === username || msg.self ? "right" : "left", margin: !(msg.senderUsername===username) && !msg.self?"0px 20px":"0px",color:(msg.senderUsername===username) && msg.self?"purple":"black"}}>
+                className={`${
+    (msg.senderUsername === username) && msg.self
+      ? "text-purple-500"
+      : "text-black dark:text-white"
+  }`}
+  style={{
+    textAlign:
+      msg.senderUsername === username || msg.self ? "right" : "left",
+    margin:
+      !(msg.senderUsername === username) && !msg.self
+        ? "0px 20px"
+        : "0px",
+  }} >
                     <p><strong>{msg.senderUsername===username? `You → ${msg.receiverUsername}` : `${msg.senderUsername} → You`} </strong> {msg.content}</p>
             </div>
         ))}
@@ -154,7 +166,7 @@ const ChatPage = () => {
 
     </div>
     <Footer />
-    </>
+    </div>
   )
 }
 
