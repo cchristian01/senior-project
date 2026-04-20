@@ -165,7 +165,6 @@ const InfoCard = ({Subject, num, setNum}) => {
         : <span></span>}
         </p>
         <button className='cursor-pointer p-8 m-2 mt-15 font-bold' onClick={questions?prevQuestion: prevInfo}>Back</button>
-        <button className='cursor-pointer font-bold' onClick={handleSave}>Save</button>
 
         <button className='cursor-pointer p-8 m-2 mt-15 font-bold' onClick={questions?nextQuestion: nextInfo}>Next</button>
         {!questions? <button className='cursor-pointer p-8 m-2 mt-15 text-green-600 font-bold' onClick={changeBool} >Continue to Questions</button> : <span></span>}
