@@ -30,14 +30,17 @@ const ChooseSubject = ({userName}) => {
         });
 
         data = await res.json();
+        console.log(data);
         if(!data[0]){
           path_val = 0;
         }
         else {
-          path_val = data[0].path_value;
+          path_val = data[0].total_path;
 
         }
+        path_val = path_val.toFixed(4);
         console.log(path_val);
+        
         
             
          

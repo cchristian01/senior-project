@@ -107,7 +107,7 @@ const ChatPage = () => {
 
             <ul className='bg-black-400 h-8'>
                 {results.map((result, index) => (
-                <li key={index}><button className='cursor-pointer hover:font-bold' onClick={() => setChatPartner(result)}>{result}</button></li>  // Use a unique key if possible instead of index
+                <li key={index}><button className='cursor-pointer dark:text-white hover:font-bold' onClick={() => setChatPartner(result)}>{result}</button></li>  // Use a unique key if possible instead of index
                 ))}
             </ul>
             

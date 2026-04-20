@@ -9,7 +9,7 @@ const ProgressBar = ({barName, progress}) => {
         <div style={{width: `${progress *100}%`}} className=' h-full h-5 bg-black dark:bg-white '></div>
 
     </div>
-    <span className='text-md -mt-1 dark:text-white'>{progress * 100}%</span>
+    <span className='text-md -mt-1 dark:text-white'>{(progress * 100).toFixed(1)}%</span>
     </div>
     
 

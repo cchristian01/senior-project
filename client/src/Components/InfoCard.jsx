@@ -15,6 +15,7 @@ const InfoCard = ({Subject, num, setNum}) => {
     }
     
     const nextQuestion = () => {
+      handleSave();
       setNum(prev => { if(prev < 9){return prev + 1} return prev})
       setAnswer('');
       setSubmitted(false);
@@ -77,7 +78,8 @@ const InfoCard = ({Subject, num, setNum}) => {
         if( data.result.length == 0 || newTotal > data.result[0]?.points_earned){
           console.log("yes")
           console.log(data.result);
-          const updateBool = (newTotal > data.result[0]?.points_earned);
+          const updateBool = (data.result.length);
+          console.log(updateBool)
            const res = await fetch('http://localhost:5000/api/update-score', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

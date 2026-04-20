@@ -396,7 +396,7 @@ app.post('/api/get-percentage', async(req, res) => {
     const path_id = rows2[0]?.id;
 
     const [rows3] = await connection.execute(
-        'SELECT * FROM ln_progress WHERE progress_user_id = ? AND progress_path_id = ? LIMIT 1',
+        'SELECT SUM(path_value) AS total_path FROM ln_progress WHERE progress_user_id = ? AND progress_path_id = ?',
         [user_id, path_id]
     );
         res.json(rows3);
