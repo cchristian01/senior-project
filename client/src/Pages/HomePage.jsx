@@ -10,7 +10,6 @@ import Footer from '../Components/Footer.jsx'
 const HomePage = () => {
   return (
     <div className='dark:bg-black '>
-    <div>HomePage</div>
     <Header />
 
     <div className="text-right">

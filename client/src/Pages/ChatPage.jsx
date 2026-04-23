@@ -124,7 +124,7 @@ const ChatPage = () => {
 
 
 
-  <div className='bg-gray-100 dark:bg-red-700 relative rounded-xl dark:text-white text-left h-full md:h-[full] w-full align-left md:w-[full] m-0 pb-10   shadow-xl z-3'>
+  <div className='bg-gray-100 dark:bg-stone-800 relative rounded-xl dark:text-white text-left h-full md:h-[full] w-full align-left md:w-[full] m-0 pb-10   shadow-xl z-3'>
       <h1 className='bg-black-600 text-center font-bold text-lg'>Current Chat</h1>
       <h2 className='bg-black-600 text-left font-bold text-lg'>Recipient: </h2> <span> <h2 className='font-bold dark:text-white text-gray-500'>{chatWithUser} </h2></span> 
       <div className='bg-gray-50 dark:bg-black relative rounded-xl overflow-scroll w-[0.8] h-[80%] mb-6 m-2 md:m-4'>

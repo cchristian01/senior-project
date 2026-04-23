@@ -23,14 +23,19 @@ const InfoCard = ({Subject, num, setNum}) => {
 
       const prevQuestion = () => {
         setNum(prev => { if(prev > 0) { return prev - 1} return 0 })
+          setAnswer('');
         }
+        
         const [answers, setAnswers] = useState([]);
         const [answer, setAnswer] = useState('');
         const [submitted, setSubmitted] = useState(false);
+        const [answered, setAnswered] = useState([]);
     const handleSubmit = (e) =>{
       setSubmitted(true);
       e.preventDefault();
-      setAnswers((prevAnswers) => [...prevAnswers, (answer)]);
+    
+      setAnswers((prevAnswers) => {const newAnswers = [...prevAnswers]; if(!answered[num]) newAnswers[num] = answer; return newAnswers; });
+      setAnswered((prevAnswered) => { const newAnswered = [...prevAnswered]; newAnswered[num] = 1; return newAnswered;});
     }
     const countMatches = (list1, list2) => {
       let count = 0;
@@ -135,6 +140,7 @@ const InfoCard = ({Subject, num, setNum}) => {
       setResults(false);
       setNum(0);
       setAnswers([]);
+      window.location.reload();
     };
 
     const nextLesson = () => {
@@ -145,6 +151,7 @@ const InfoCard = ({Subject, num, setNum}) => {
       setquestions(false);
     };
     console.log(num)
+    const answerString = Subject[`${part}`].answers[num] == lowercase[num]? "✔️Your answer is correct!" :` ❌Incorrect, the correct answer was ${Subject[`${part}`].answers[num]}.`;
   return  ( results?     <div className='bg-gray-200 h-80 w-200 font-bold text-xl text-center'>
         <p className='h-20 text-center mt-20'>You got {correctNum} / 10 right, {getResponse(correctNum)}</p>
         <button className='cursor-pointer p-8 m-2 mt-15 text-red-600 font-bold' onClick={tryAgain}>Try Again</button>
@@ -153,8 +160,9 @@ const InfoCard = ({Subject, num, setNum}) => {
         </div>:
     <div className='bg-gray-200 h-100 w-200 font-bold text-xl text-center'>
       {questions? <h1>{num + 1}/10</h1>:<h1></h1>}
-      {submitted?<p className='font-bold text-green-700 text-md'>Answer Submitted.</p>:<></>}
-      
+        {answered[num] && Subject[`${part}`].answers[num] == lowercase[num]?<p className='font-bold text-green-700 text-md'>{answerString}</p>:<></>}
+        {answered[num] && !(Subject[`${part}`].answers[num] == lowercase[num])?<p className='font-bold text-red-700 text-md'>{answerString}</p>:<></>}
+
         <p className='h-20 text-center mt-20'>{questions? Subject[`${part}`].questions[num] : Subject[`${part}`].info[num]}
         {questions?
         

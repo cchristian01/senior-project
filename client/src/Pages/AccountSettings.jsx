@@ -35,27 +35,28 @@ const AccountSettings = () => {
 
   return (
     <>
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow rounded-md">
+    <div className='dark:bg-black '>
+    <div className="max-w-md mx-auto mt-10 dark:text-white dark:bg-stone-800 p-6 bg-white shadow rounded-md">
       <h2 className="text-xl font-semibold mb-6">Account Settings</h2>
 
       {/* Username */}
       <div className="mb-5">
         <label className="block font-medium mb-1">Username:</label>
-        <p className="text-gray-700">{user}</p>
+        <p className="text-gray-50">{user}</p>
       </div>
 
       {/* Email */}
       <div className="mb-5">
         <label className="block font-medium mb-1">Email:</label>
-        <p className="text-gray-700">{email}</p>
+        <p className="text-gray-700 dark:text-gray-50">{email}</p>
       </div>
 
       {/* Password */}
       <div className="mb-5">
         <label className="block font-medium mb-1">Password:</label>
-        <p className="text-2xl tracking-widest text-gray-700">{maskedPassword}</p>
+        <p className="text-2xl tracking-widest dark:text-gray-50 text-gray-700">{maskedPassword}</p>
         <button
-          className="mt-3 px-4 py-2 bg-red-600 text-white cursor-pointer rounded hover:bg-blue-700 transition"
+          className="mt-3 px-4 py-2 bg-red-600 text-white cursor-pointer rounded dark:hover:bg-red-800 hover:bg-blue-700 transition"
           onClick={handleResetPassword}
         >
           Reset Password
@@ -68,6 +69,7 @@ const AccountSettings = () => {
 
     </div>
     <Footer />
+    </div>
     </>
   );
 };

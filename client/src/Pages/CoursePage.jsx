@@ -275,9 +275,21 @@ export const CoursePage = ({subject}) => {
         },
             "3D-Shapes":{
             level1: {
-                info: [],
-                questions: [],
-                answers: [],
+                info: ["A face is a flat or curved surfaces that makes outside of the shape. An edge is a line segments where two faces meet. Vertices are the corners where 3 or more edges come together. Vertex is singular form of vertices.",
+                    "A cube has 6 faces that are all squares, 12 edges and 8 vertices.",
+                    " A sphere has 1 curved face and 0 edges and 0 vertices.",
+                    " A cylinder has 3 faces, 2 are flat and 1 is curved, 2 edges and 0 vertices.",
+                     " A cone has 2 faces 1 flat and 1 curved, 1 edge, and 1 vertex",
+                     "A rectangular prism has 6 faces and all are rectangles, 12 edges, and 8 vertices",
+                     "A square-based pyramid has 5 faces, 8 edges, and 5 vertices",
+                ],
+                questions: ["How many edges does a square based pyramid have?", "How many faces does a cube have?",
+                    "How many edges does a cone have?", "How many faces does a rectangular prism have?",
+                    "What shape has 1 curved face and 0 edges and 0 vertices?", "What is the name of a line segment where two faces meet?",
+                    "How many vertices does a cube have?", "What shape has 3 faces, 2 are flat and 1 is curved, 2 edges, and 0 vertices?",
+                    "What shape has 5 faces, 8 edges, and 5 vertices?", "How many vertices does a cone have?",
+                ],
+                answers: ["8", "6", "1", "6", "sphere","edge", "8","cylinder","square-based pyramid", "1"],
             },
              level2: {
                 info: [],
@@ -297,9 +309,15 @@ export const CoursePage = ({subject}) => {
         },
             "Measurements":{
             level1: {
-                info: [],
-                questions: [],
-                answers: [],
+                info: ["There are 3 sides and 3 angles in a triangle and each angle is measured in degrees. The sum of the angles in a traingle is 180. The perimeter is the sum of all the side lengths of the triangle.",
+                     "A square has 4 sides and an angle for each side. A square has 4 90 degree angles. The perimeter is the sum of all the side lengths of the square.",
+                    "A circle has only one side and 0 corners. A circle has a center which is the middle point. The radius of a circle is any line from center to edge. The diameter of a circle goes from edge to edge and is twice the length of the radius. The circumference of a circle is the distance around the circle. "],
+                questions: ["How many sides does a circle have?", "What is the name of the middle point of a circle?", 
+                    "What is the name for a line from the center to edge of a circle?", "How many sides does a triangle have?",
+                    "How many angles does a triangle have?", "What is the sum of the angles in a triangle?",
+                "How many sides does a square have?", "What is the sum of all the angles in a square?",
+            "What is the sum of all the sides lengths of a square called?", "What is the distance around a circle called?"],
+                answers: ["1", "center", "radius", "3", "3", "180", "4", "360", "perimeter", "circumference"],
             },
              level2: {
                 info: [],
