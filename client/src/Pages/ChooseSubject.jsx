@@ -68,7 +68,7 @@ const ChooseSubject = ({userName}) => {
         <TopMenu />
         
         
-        <div className="text-right"><Link to="/"><button className="cursor-pointer bg-black hover:bg-gray-700 mr-2 mt-5 md:mt-10 md:mr-5 text-white font-bold rounded-lg dark:bg-white dark:text-black shadow-lg p-1 md:p-3 w-20 md:w-35">Logout</button></Link></div>
+        <div className="text-right"><Link to="/"><button className="cursor-pointer bg-black hover:bg-gray-700 dark:hover:bg-gray-400 mr-2 mt-5 md:mt-10 md:mr-5 text-white font-bold rounded-lg dark:bg-white dark:text-black shadow-lg p-1 md:p-3 w-20 md:w-35">Logout</button></Link></div>
         </div>
         
 

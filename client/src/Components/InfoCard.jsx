@@ -162,8 +162,8 @@ const InfoCard = ({Subject, num, setNum}) => {
       {questions? <h1>{num + 1}/10</h1>:<h1></h1>}
         {answered[num] && Subject[`${part}`].answers[num] == lowercase[num]?<p className='font-bold text-green-700 text-md'>{answerString}</p>:<></>}
         {answered[num] && !(Subject[`${part}`].answers[num] == lowercase[num])?<p className='font-bold text-red-700 text-md'>{answerString}</p>:<></>}
-
-        <p className='h-20 text-center mt-20'>{questions? Subject[`${part}`].questions[num] : Subject[`${part}`].info[num]}
+        <p>{Subject[`${part}`].instructions}</p>
+        <p className='h-20 text-center mt-20'>{questions? Subject[`${part}`].questions[num] : Subject[`${part}`].info[num]}</p>
         {questions?
         
         <form onSubmit={handleSubmit} className='h-8'>
@@ -171,7 +171,7 @@ const InfoCard = ({Subject, num, setNum}) => {
           <button type="submit" className='h-5 text-center text-blue  cursor-pointer'>Submit </button >
         </form>
         : <span></span>}
-        </p>
+        
         <button className='cursor-pointer p-8 m-2 mt-15 font-bold' onClick={questions?prevQuestion: prevInfo}>Back</button>
 
         <button className='cursor-pointer p-8 m-2 mt-15 font-bold' onClick={questions?nextQuestion: nextInfo}>Next</button>

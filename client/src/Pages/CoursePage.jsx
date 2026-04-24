@@ -25,8 +25,9 @@ export const CoursePage = ({subject}) => {
     const subjects= {
         "Elementary Math":{
          "Addition": {
-
+        
         level1: {
+            instructions: "Enter the sum",
         info: ["Single Digit Addition",
             "Addition is an important idea to understand. You will always need to know what number you get when two or more numbers are put together.",
             "Key terms for this lesson are ADD, ADDITION, AMOUNT, SUM",
@@ -40,6 +41,7 @@ export const CoursePage = ({subject}) => {
         },
 
         level2: {
+            instructions: "Enter the sum",
             info: ["Multi Digit Column Addition",
                 "See, adding is easy. If you can add single digit numbers then you can add multi digit numbers. There is just a simple extra concept you need to understand. As you might know we count numbers using base 10. This means each digit in a number could be one of any of the ten digits 0-9. Key terms for this lesson are ONES PLACE, TENS PLACE, HUNDREDS PLACE, THOUSANDS PLACE, AND CARRY DIGIT",
                 "When numbers have more than one digit, the digits that are further left have a higher value and digits that are further right have a lower value. ",
@@ -51,6 +53,7 @@ export const CoursePage = ({subject}) => {
         },
 
         level3: {
+            instructions: "Enter the sum",
             info: ["Addition Properties & an Alternative Method"],
             questions: ["3 + (8 + 3) = ", "56 + (4 + 2) = ", "40 + 55 + 2 = ", "0 + 16 = ", "210 + 350 = ", "420 + 510 = ", "2031 + 788 + 1 = ", "84 + 15 = ", "300 + 0 = ", 
                 "45 + 0 = "
@@ -59,6 +62,7 @@ export const CoursePage = ({subject}) => {
         },
 
         level4: {
+            instructions: "Enter the answer",
             info: ["Test Time", "This is the test portion where you will be asked questions from all 3 lessons", "Good luck."],
             questions: ["413 + 726 = ", "550 + 181 = ", "6 + 6 = ", "8 + (3 + 14) + (5 + 177) + 2 = ", "42 + 11 = ", "16 + 5 = ", "3 + 1 = ", "15 + 16 = ", "2 + 0 = ", "(5 + 3231) + 323 = "],
             answers: [1139, 631, 12, 207, 53, 21, 4, 31, 2, 3559],
@@ -67,7 +71,9 @@ export const CoursePage = ({subject}) => {
         },   
 
         "Subtraction" : {
+            
             level1: {
+                instructions: "Enter the difference",
                 info: ["Single Digit Subtraction",
                     "Subtraction is another important idea to understand. Addition & Subtraction are the start of learning math.",
                     "Key terms for this lesson are DIFFERENCE, SUBTRACT, MINUS, TAKE AWAY FROM",
@@ -82,6 +88,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level2: {
+                    instructions: "Enter the difference",
                     info: ["Multi Digit Column Subtraction",
                         "See, subtracting is easy. If you can subtract single digit numbers then you can subtract multi digit numbers. There is just a simple extra concept you need to understand. As you might know we count numbers using base 10. This means each digit in a number could be one of any of the ten digits 0-9. Key terms for this lesson are ONES PLACE, TENS PLACE, HUNDREDS PLACE, THOUSANDS PLACE, BORROWING, AND CARRY DIGIT",
                         "When numbers have more than one digit, the digits that are further left have a higher value and digits that are further right have a lower value. ",
@@ -94,6 +101,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level3: {
+                    instructions: "Enter the difference",
                     info: ["Subtraction Properties & an Alternative Method"],
                     questions: ["18 - 0 = ", "56 - 0 = ", "40 - 2 = ", "100 - 16 = ", "1210 - 350 = ", "520 - 2 - 510 = ", "2031 - 788 - 1 = ", "84 - 15 - 17 = ", "300 - 0 = ", 
                         "445 - 0 = "
@@ -102,6 +110,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level4: {
+                    instructions: "Enter the answer",
                     info: ["Test Time", "This is the test portion where you will be asked questions from all 3 lessons", "Good luck."],
                     questions: ["1413 - 726 = ", "5501 - 181 = ", "6 - 6 = ", "8 - 3 - 2 = ", "42 - 11 = ", "166 - 5 = ", "133 - 1 = ", "155 - 16 = ", "2 - 0 = ", "5241 - 323 = "],
                     answers: [687, 5320, 0, 3, 32, 161, 132, 139, 2, 4918],
@@ -109,7 +118,9 @@ export const CoursePage = ({subject}) => {
         },
 
         "Multiplication" : {
+            
             level1: {
+                instructions: "Enter the product",
                 info: ["Single Digit Multiplication",
                     "Multiplication is another important idea to understand. You will always need to know what number you get when two or more numbers are multiplied together.",
                     "Key terms for this lesson are MUTIPLY, MULTIPLICATION, PRODUCT, TIMES",
@@ -123,6 +134,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level2: {
+                    instructions: "Enter the product",
                     info: ["Multi Digit Column Multiplication",
                         "See, multiplying is easy. If you can multiply single digit numbers then you can multiply multi digit numbers. There is just a simple extra concept you need to understand. As you might know we count numbers using base 10. This means each digit in a number could be one of any of the ten digits 0-9. Key terms for this lesson are ONES PLACE, TENS PLACE, HUNDREDS PLACE, THOUSANDS PLACE, AND CARRY DIGIT",
                         "When numbers have more than one digit, the digits that are further left have a higher value and digits that are further right have a lower value. ",
@@ -135,6 +147,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level3: {
+                    instructions: "Enter the product",
                     info: ["Multiplication Properties & an Alternative Method"],
                     questions: ["3 x (8 x 3) = ", "56 x (4 x 2) = ", "40 x 5 x 2 = ", "0 x 16 = ", "1 x 50 = ", "4 x 510 = ", "2031 x 78 x  1 = ", "4 x 15 = ", "300 x 0 = ", 
                         "25 x 50 = "
@@ -143,6 +156,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level4: {
+                    instructions: "Enter the answer",
                     info: ["Test Time", "This is the test portion where you will be asked questions from all 3 lessons", "Good luck."],
                     questions: ["13 x 76 = ", "0 x 18 = ", "4 x 14 = ", "(5 x 60) x 2 = ", "22 x 10 = ", "16 x 5 = ", "3 x 1 = ", "15 x 21 = ", "2 x 0 = ", "(5 x 32) x 3 = "],
                     answers: [988, 0, 42, 600, 220, 80, 3, 315, 480],
@@ -151,7 +165,9 @@ export const CoursePage = ({subject}) => {
         },
 
         "Division" : {
+            
             level1: {
+                instructions: "Enter the quotient",
                 info: ["Single Digit Division",
                     "Division is an important idea to understand. You will always need to know what number you divide one number by another.",
                     "Key terms for this lesson are DIVIDE, DIVISION, QUOTIENT",
@@ -165,6 +181,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level2: {
+                    instructions: "Enter the quotient",
                     info: ["Multi Digit Division & Long Division",
                         "See, division is easy. If you can divide single digit numbers then you can divide multi digit numbers. There is just a simple extra concept you need to understand. As you might know we count numbers using base 10. This means each digit in a number could be one of any of the ten digits 0-9. Key terms for this lesson are ONES PLACE, TENS PLACE, HUNDREDS PLACE, THOUSANDS PLACE, AND CARRY DIGIT",
                         "When numbers have more than one digit, the digits that are further left have a higher value and digits that are further right have a lower value. ",
@@ -176,6 +193,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level3: {
+                    instructions: "Enter the quotient",
                     info: ["More Division"],
                     questions: ["210 / 7 = ", "0 / 5 = ", "60 / 12 = ", "1000 / 5 = ", "15 / 15 = ", "765 / 45 = ", "2048 / 256 = ", "500 / 10 = ", "300 / 1= ", 
                         "50 / 25 = "
@@ -184,6 +202,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level4: {
+                    instructions: "Enter the answer",
                     info: ["Test Time", "This is the test portion where you will be asked questions from all 3 lessons", "Good luck."],
                     questions: ["40 / 10 = ", "550 + 10 = ", "60 / 6 = ", "81 / 9  = ", "75 / 5 = ", "30 / 5 = ", "30 / 1 = ", "150 / 6 = ", "0 / 2 = ", "720 / 6 = "],
                     answers: [1139, 631, 12, 207, 53, 21, 4, 31, 2, 3559],
@@ -192,7 +211,9 @@ export const CoursePage = ({subject}) => {
         },
 
         "Fractions" : {
+            
             level1: {
+                instructions: "Reduce to simplest form",
                 info: ["Reducing Fractions",
                     "Reducing fractions is an important idea to understand for working with fractions. You will always need to know what number you get when two or more numbers are put together.",
                     "Key terms for this lesson are REDUCE, DIVIDE, PARTS, WHOLE",
@@ -205,6 +226,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level2: {
+                    instructions: "Enter the sum",
                     info: ["Adding and Subtracting Fractions & Improper Fractions and Mixed Numbers",
                         "See,  is easy. If you can add single digit numbers then you can add multi digit numbers. There is just a simple extra concept you need to understand. As you might know we count numbers using base 10. This means each digit in a number could be one of any of the ten digits 0-9. Key terms for this lesson are ONES PLACE, TENS PLACE, HUNDREDS PLACE, THOUSANDS PLACE, AND CARRY DIGIT",
                         "When numbers have more than one digit, the digits that are further left have a higher value and digits that are further right have a lower value. ",
@@ -216,6 +238,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level3: {
+                    instructions: "Enter the product",
                     info: ["Multiplying and Dividing Fractions"],
                     questions: ["(3 / 2) x (4 / 3) = ", "(5 / 6) / (4 / 2) = ", "(4 / 1) x (2 / 7) = ", "0 x (16 / 2) = ", "(2 / 10) / (4 / 5) = ", "(4 / 7) x (5 / 22) = ", "(20 / 31) x (7 / 8) x (1 / 10) = ", "(8 / 14) x (1 / 15) x (6 / 7) = ", "(3 / 12) x 1= ", 
                         "(4 / 5) / (6 / 10) = "
@@ -224,6 +247,7 @@ export const CoursePage = ({subject}) => {
                 },
         
                 level4: {
+                    instructions: "Enter the answer",
                     info: ["Test Time", "This is the test portion where you will be asked questions from all 3 lessons", "Good luck."],
                     questions: ["(23 / 2) x (4 / 13) = ", "(5 / 16) / (4 / 2) = ", "(4 / 10) / (2 / 70) = ", "0 x (16 / 2) = ", "(2 / 100) / (4 / 15) = ", "(4 / 7) / (5 / 22) = ", "(20 / 31) x (7 / 8) x (1 / 10) = ", "(8 / 14) x (1 / 15) x (6 / 7) = ", "(3 / 12) x 1= ", 
                         "(4 / 5) / (6 / 10) = "],
@@ -232,8 +256,10 @@ export const CoursePage = ({subject}) => {
         }
     },
     "Basic Geometry":{
+        
         "2D-Shapes":{
             level1: {
+                instructions: "",
                 info: ["Identifying Shapes is important, all objects have a shape and we will teach you about the most common simple shapes",
                     "▲ : A triangle is a shape with three sides ",
                     "■ : A square has 4 sides all with equal length",
@@ -258,23 +284,28 @@ export const CoursePage = ({subject}) => {
                 answers: ["hexagon","hexagon","triangle","square","pentagon","star","rectangle","circle","star","circle"],
             },
              level2: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level3: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level4: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
         },
             "3D-Shapes":{
+                
             level1: {
+                instructions: "",
                 info: ["A face is a flat or curved surfaces that makes outside of the shape. An edge is a line segments where two faces meet. Vertices are the corners where 3 or more edges come together. Vertex is singular form of vertices.",
                     "A cube has 6 faces that are all squares, 12 edges and 8 vertices.",
                     " A sphere has 1 curved face and 0 edges and 0 vertices.",
@@ -292,23 +323,28 @@ export const CoursePage = ({subject}) => {
                 answers: ["8", "6", "1", "6", "sphere","edge", "8","cylinder","square-based pyramid", "1"],
             },
              level2: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level3: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level4: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
         },
             "Measurements":{
+                
             level1: {
+                instructions: "",
                 info: ["There are 3 sides and 3 angles in a triangle and each angle is measured in degrees. The sum of the angles in a traingle is 180. The perimeter is the sum of all the side lengths of the triangle.",
                      "A square has 4 sides and an angle for each side. A square has 4 90 degree angles. The perimeter is the sum of all the side lengths of the square.",
                     "A circle has only one side and 0 corners. A circle has a center which is the middle point. The radius of a circle is any line from center to edge. The diameter of a circle goes from edge to edge and is twice the length of the radius. The circumference of a circle is the distance around the circle. "],
@@ -320,38 +356,46 @@ export const CoursePage = ({subject}) => {
                 answers: ["1", "center", "radius", "3", "3", "180", "4", "360", "perimeter", "circumference"],
             },
              level2: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level3: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level4: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
         },
             "Lines & Angles":{
+                
             level1: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level2: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level3: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
             },
              level4: {
+                instructions: "",
                 info: [],
                 questions: [],
                 answers: [],
