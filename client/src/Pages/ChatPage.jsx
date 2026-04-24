@@ -84,6 +84,9 @@ const ChatPage = () => {
     const setChatPartner = (user) => {
         setChatWithUser(user);
         console.log(chatWithUser)
+        setResults([])
+        setSearch('')
+        setMessages([])
    }
 
    const clear = () =>{
@@ -102,7 +105,7 @@ const ChatPage = () => {
     <div className='h-20 text-center w-full'>
         <div className='mt-12 mr-10 md:mr-50 md:mt-20 h-[0.6] w-full'>
             <form onSubmit={handleSubmit}>
-            <input className='rounded-lg dark:bg-white text-lg'type="text" value={search} onChange={handleInputChange} placeholder='Search for a user...'/><span><button className='cursor-pointer hover:h-3'>🔍</button></span>
+            <input className='rounded-lg dark:bg-stone-800 dark:text-white border-2 border-lg dark:border-gray-600 border-gray-400 text-lg'type="text" value={search} onChange={handleInputChange} placeholder='Search for a user...'/><span><button className='cursor-pointer hover:h-3'>🔍</button></span>
             </form>
 
             <ul className='bg-black-400 h-8'>
@@ -114,13 +117,14 @@ const ChatPage = () => {
         </div>
     </div>
             
-    <h1 className='text-left text-black-600 ml-3 md:ml-8 text-md md:text-xl font-bold dark:text-white mb-3 md:mb-4'>| Chat History |</h1>
+    {/* <h1 className='text-left text-black-600 ml-3 md:ml-8 text-md md:text-xl font-bold dark:text-white mb-3 md:mb-4'>| Chat History |</h1> */}
     <div className='grid grid-cols-[30%_50%] gap-0 h-10 m-0 p-0 md:h-160 mb-30 '>
-        <div className='text-left  ml-2 bg-gray-200 rounded-lg h-[full] w-[full] md:w-[full]'>
+        <div></div>
+        {/* <div className='text-left  ml-2 bg-gray-200 rounded-lg h-[full] w-[full] md:w-[full]'>
             <ul>
                 <li></li>
             </ul>
-        </div>
+        </div> */}
 
 
 
@@ -154,8 +158,8 @@ const ChatPage = () => {
           </div>
 
       </div>
-      <div className="absolute w-full ">
-                  <textarea className='ml-[8%] border-b-2 border-l focus:border-gray outline-0' type="text" ref={inputRef}onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> {if(e.key==="Enter") sendMessage()}}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
+      <div className="absolute w-full mt-[-1.5%]">
+                  <textarea className='ml-[8%]  border-b-2 border-l focus:border-gray outline-0' type="text" ref={inputRef}onChange={(e)=>setMessage(e.target.value)} onKeyDown={(e)=> {if(e.key==="Enter") sendMessage()}}placeholder='Enter message...'/> <span><button className='text-red-600 pl-[10%] font-bold text-lg cursor-pointer hover:text-xl'onClick={sendMessage}>Send</button></span>
         </div>
     </div>
 

@@ -68,6 +68,7 @@ const AccountSettings = () => {
       {linkSent? <p className='text-green-700 text-center font-bold'>A password reset link has been sent to your email.</p>:<></>}
 
     </div>
+    <div className='h-30'></div>
     <Footer />
     </div>
     </>
